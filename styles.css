@@ -566,6 +566,18 @@ a:hover {
   .card {
     padding: var(--space-lg);
   }
+
+  /* Order Summary Fixes for Mobile */
+  .summary-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .config-value {
+    word-break: break-word;
+    width: 100%;
+  }
 }
 
 /* ============================================
