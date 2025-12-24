@@ -199,13 +199,13 @@ export default function Survey() {
                         <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl -mr-10 -mt-10"></div>
                         <h2 className="text-xl font-bold font-display text-indigo-900 mb-6 flex items-center gap-2 relative z-10">
                             <span className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm">4</span>
-                            The CatchEater Solution
+                            The Catcheater Solution
                         </h2>
 
                         <div className="space-y-6 relative z-10">
                             <div className="form-group">
                                 <label className="block text-sm font-bold text-foreground mb-3 leading-relaxed">
-                                    "CatchEater" is an autonomous genetic circuit that detects low-producing "cheater" cells and eliminates them from the bioreactor in real-time. Knowing this, how interested are you in testing it?
+                                    "Catcheater" is an autonomous genetic circuit that detects low-producing "cheater" cells and eliminates them from the bioreactor in real-time. Knowing this, how interested are you in testing it?
                                 </label>
                                 <div className="space-y-2">
                                     {['Not interested (Current methods work)', 'Curious (I would read a whitepaper/case study)', 'Interested (I would buy an Evaluation Kit)', 'Very Interested (We have an active need for this)'].map((opt) => (

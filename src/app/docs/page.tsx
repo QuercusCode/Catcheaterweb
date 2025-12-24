@@ -48,9 +48,9 @@ export default function Documentation() {
 
                         {/* Section: Concept */}
                         <section id="concept" className="space-y-6">
-                            <h1 className="text-4xl font-display font-bold text-foreground">CatchEater™ System</h1>
+                            <h1 className="text-4xl font-display font-bold text-foreground">Catcheater™ System</h1>
                             <p className="text-lg text-muted-foreground leading-relaxed">
-                                CatchEater is a proprietary biological quality control circuit. It serves as an embedded "immune system" for your bioreactors, autonomously identifying and neutralizing non-productive mutant cells ("cheaters") that compromise yield stability.
+                                Catcheater is a proprietary biological quality control circuit. It serves as an embedded "immune system" for your bioreactors, autonomously identifying and neutralizing non-productive mutant cells ("cheaters") that compromise yield stability.
                             </p>
 
                             <div className="p-6 bg-slate-50 border border-slate-200 rounded-xl">
@@ -77,7 +77,7 @@ export default function Documentation() {
                                     <div>
                                         <h3 className="font-bold text-foreground mb-1">Extended Production Runs</h3>
                                         <p className="text-sm text-muted-foreground">
-                                            By constantly purging low-performing variants, CatchEater extends the productive phase of fermentation, allowing for longer continuous runs without genetic drift.
+                                            By constantly purging low-performing variants, Catcheater extends the productive phase of fermentation, allowing for longer continuous runs without genetic drift.
                                         </p>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@ export default function Documentation() {
                                 <div className="relative">
                                     <div className="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-white border-4 border-slate-300"></div>
                                     <h3 className="font-bold text-foreground">3. Scale</h3>
-                                    <p className="text-sm text-muted-foreground mt-1">Run your fermentation as usual. The CatchEater circuit runs in the background, ensuring population homogeneity.</p>
+                                    <p className="text-sm text-muted-foreground mt-1">Run your fermentation as usual. The Catcheater circuit runs in the background, ensuring population homogeneity.</p>
                                 </div>
                             </div>
                         </section>
@@ -141,7 +141,7 @@ export default function Documentation() {
                                     </p>
                                 </div>
                                 <div className="bg-surface border border-border rounded-xl p-6">
-                                    <h3 className="font-bold text-foreground mb-2">Does CatchEater impose a metabolic burden?</h3>
+                                    <h3 className="font-bold text-foreground mb-2">Does Catcheater impose a metabolic burden?</h3>
                                     <p className="text-sm text-muted-foreground">
                                         The sensor circuit is designed to be extremely lightweight. In comparative studies, the burden of maintaining the circuit is negligible compared to the yield gains from improved population stability.
                                     </p>

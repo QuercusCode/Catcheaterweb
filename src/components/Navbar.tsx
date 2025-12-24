@@ -20,7 +20,7 @@ const searchIndex = [
     { type: 'Page', title: 'Pricing & Plans', href: '/pricing', icon: FileText },
     { type: 'Page', title: 'Documentation', href: '/docs', icon: HelpCircle },
     { type: 'Page', title: 'Research Blog', href: '/blog', icon: FileText },
-    { type: 'Page', title: 'About CatchEater', href: '/about', icon: FileText },
+    { type: 'Page', title: 'About Catcheater', href: '/about', icon: FileText },
     { type: 'Page', title: 'Market Survey', href: '/survey', icon: FileText },
     { type: 'Action', title: 'Console Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { type: 'Action', title: 'My Kits', href: '/dashboard/kits', icon: FlaskConical },

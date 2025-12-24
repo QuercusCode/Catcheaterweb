@@ -55,7 +55,7 @@ const blogPosts = {
 
             <h3 class="text-2xl font-bold mb-4">Reclaiming the ATP</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
-                The CatchEater system inverts this dynamic. By coupling essential gene function to product formation quality, we ensure that the "cheater" phenotype is lethal. 
+                The Catcheater system inverts this dynamic. By coupling essential gene function to product formation quality, we ensure that the "cheater" phenotype is lethal. 
                 Testing in our BL21(DE3) strains showed that even after 120 hours of continuous culture, the population remained >99% plasmid-positive, resulting in a <strong>2.4x increase in total protein yield</strong> compared to standard antibiotic selection.
             </p>
         `
@@ -124,7 +124,7 @@ const blogPosts = {
         subtitle: "From shake flask to industrial fermenter without the performance drop.",
         date: "Nov 25, 2025",
         author: "Tech Team",
-        role: "CatchEater R&D",
+        role: "Catcheater R&D",
         category: "Case Study",
         readTime: "7 min read",
         image: "bg-emerald-50 text-emerald-600",
@@ -143,7 +143,7 @@ const blogPosts = {
                         <tr>
                             <th class="p-3">Parameter</th>
                             <th class="p-3">Control (Standard BL21)</th>
-                            <th class="p-3">CatchEater Strain</th>
+                            <th class="p-3">Catcheater Strain</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-border">
@@ -173,9 +173,9 @@ const blogPosts = {
 
             <h3 class="text-2xl font-bold mb-4">Outcomes</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
-                <strong>1. Plasmid Retention:</strong> The Control group dropped to 45% plasmid retention by hour 48. The CatchEater group maintained 99.8% retention through hour 72.
+                <strong>1. Plasmid Retention:</strong> The Control group dropped to 45% plasmid retention by hour 48. The Catcheater group maintained 99.8% retention through hour 72.
                 <br/><br/>
-                <strong>2. Titer:</strong> Final protein titer for CatchEater was 3.8 g/L compared to 1.9 g/L for the control.
+                <strong>2. Titer:</strong> Final protein titer for Catcheater was 3.8 g/L compared to 1.9 g/L for the control.
                 <br/><br/>
                 <strong>3. Cost:</strong> Eliminating the antibiotic reduced media costs by 12% at this scale, with projected savings of over $50k/run at the 10,000L scale.
             </p>
@@ -185,7 +185,7 @@ const blogPosts = {
                 Beyond yield, the removal of antibiotics simplifies the entire downstream processing (DSP) workflow. 
                 There is no need to validate the removal of trace antibiotics from the final product, a key requirement for FDA approval of injectables.
                 <br/><br/>
-                Furthermore, the CatchEater system significantly reduces the bioburden of "dead" biomass. While cheaters are lysed, they convert their biomass back into soluble amino acids and nucleotides, which can be scavenged by the productive survivors. 
+                Furthermore, the Catcheater system significantly reduces the bioburden of "dead" biomass. While cheaters are lysed, they convert their biomass back into soluble amino acids and nucleotides, which can be scavenged by the productive survivors. 
                 This effectively turns your worst enemy (the cheater) into feedstock for your product.
             </p>
         `

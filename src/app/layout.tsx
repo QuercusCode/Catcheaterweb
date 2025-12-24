@@ -15,7 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'CatchEater - Pristine Protein Production',
+  title: 'Catcheater - Pristine Protein Production',
   description: 'Tag-less Quality-Control System for E. coli. Eliminate cheaters, maximize yield.',
 };
 
