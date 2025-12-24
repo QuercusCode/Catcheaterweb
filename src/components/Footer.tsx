@@ -1,9 +1,9 @@
 export default function Footer() {
     return (
-        <footer className="w-full py-12 border-t border-glass-border mt-20 relative bg-background">
+        <footer className="w-full py-12 border-t border-border mt-20 relative bg-slate-50">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div className="col-span-1 md:col-span-2">
-                    <h3 className="text-xl font-display font-bold text-white mb-4">CatchEater</h3>
+                    <h3 className="text-xl font-display font-bold text-foreground mb-4">CatchEater</h3>
                     <p className="text-sm text-muted-foreground max-w-xs">
                         The world&apos;s first tag-less quality control system for protein production.
                         Eliminate cheaters, guarantee stability.
@@ -11,7 +11,7 @@ export default function Footer() {
                 </div>
 
                 <div>
-                    <h4 className="font-bold text-white mb-4">Product</h4>
+                    <h4 className="font-bold text-foreground mb-4">Product</h4>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                         <li><a href="/pricing" className="hover:text-primary transition-colors">Pricing</a></li>
                         <li><a href="/#products" className="hover:text-primary transition-colors">Evaluation Kit</a></li>
@@ -20,7 +20,7 @@ export default function Footer() {
                 </div>
 
                 <div>
-                    <h4 className="font-bold text-white mb-4">Legal</h4>
+                    <h4 className="font-bold text-foreground mb-4">Legal</h4>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                         <li><a href="/legal/privacy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
                         <li><a href="/legal/terms" className="hover:text-primary transition-colors">Terms of Service</a></li>
@@ -28,7 +28,7 @@ export default function Footer() {
                     </ul>
                 </div>
             </div>
-            <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-glass-border flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground">
+            <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground">
                 <p>&copy; 2025 CatchEater Inc. All rights reserved.</p>
                 <p>Designed for the Future of TechBio.</p>
             </div>
