@@ -65,7 +65,7 @@ export default function ResearchKit() {
     };
 
     return (
-        <section className="space-y-8">
+        <section id="products" className="space-y-8">
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-end border-b border-border pb-6 gap-4">
                 <div>
@@ -102,8 +102,8 @@ export default function ResearchKit() {
                                     {kit.icon}
                                 </div>
                                 <span className={`inline-block text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider ${kit.category === 'Core System' ? 'bg-amber-50 text-amber-700' :
-                                        kit.category === 'Add-on' ? 'bg-red-50 text-red-700' :
-                                            'bg-slate-100 text-slate-600'
+                                    kit.category === 'Add-on' ? 'bg-red-50 text-red-700' :
+                                        'bg-slate-100 text-slate-600'
                                     }`}>
                                     {kit.category}
                                 </span>
