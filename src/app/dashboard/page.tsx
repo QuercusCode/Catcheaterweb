@@ -1,107 +1,128 @@
 'use client';
 
-import { Activity, Zap, Dna, Crosshair, Server, Lock } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, MoreHorizontal, TrendingUp, Users, Wallet, Zap } from 'lucide-react';
 
 export default function DashboardOverview() {
     return (
-        <div className="min-h-full bg-slate-950 text-white p-6 rounded-3xl font-sans relative overflow-hidden">
-
-            {/* Ambient Background Glow */}
-            <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-            {/* Header */}
-            <div className="relative z-10 flex justify-between items-end mb-10 border-b border-white/10 pb-6">
+        <div className="h-full bg-slate-50/50 p-8 font-sans text-slate-900">
+            {/* Top Navigation / Breadcrumb Area */}
+            <div className="flex justify-between items-center mb-10">
                 <div>
-                    <h1 className="text-4xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
-                        Bio-OS v2.4
-                    </h1>
-                    <p className="text-slate-400 mt-1 font-mono text-xs tracking-widest uppercase">
-                        System Integrity: <span className="text-emerald-400">Secure</span> • Connectivity: <span className="text-emerald-400">Online</span>
-                    </p>
+                    <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Enterprise Overview</h1>
+                    <p className="text-sm text-slate-500 mt-1">Global Production • Q4 2025</p>
                 </div>
-                <div className="flex gap-4">
-                    <StatusBadge label="Network" status="Encrypted" icon={<Lock size={12} />} />
-                    <StatusBadge label="Latency" status="12ms" icon={<Zap size={12} />} />
+                <div className="flex gap-3">
+                    <span className="text-xs font-medium px-3 py-1.5 bg-white border border-slate-200 rounded-md text-slate-600 shadow-sm flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        System Operational
+                    </span>
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-1.5 rounded-md shadow-sm transition-colors">
+                        Generate Report
+                    </button>
                 </div>
             </div>
 
-            {/* Main Content Grid */}
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Main Stats Row - FinTech Style */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+                <MetricCard
+                    label="Total Savings"
+                    value="$1.24M"
+                    change="+18%"
+                    period="vs last quarter"
+                    icon={<Wallet className="text-blue-600" size={20} />}
+                />
+                <MetricCard
+                    label="Production Efficiency"
+                    value="94.2%"
+                    change="+4.5%"
+                    period="vs industry avg"
+                    icon={<Zap className="text-amber-500" size={20} />}
+                />
+                <MetricCard
+                    label="Successful Batches"
+                    value="842"
+                    change="100%"
+                    period="success rate"
+                    icon={<CheckCircle2 className="text-emerald-500" size={20} />}
+                />
+                <MetricCard
+                    label="Active Sites"
+                    value="12"
+                    change="+2"
+                    period="new deployments"
+                    icon={<Users className="text-purple-500" size={20} />}
+                />
+            </div>
 
-                {/* Visualizer Panel (Large) */}
-                <div className="lg:col-span-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col min-h-[400px]">
-                    <div className="flex justify-between items-center mb-6">
-                        <h3 className="font-bold text-lg flex items-center gap-2">
-                            <Dna size={20} className="text-emerald-400" />
-                            Population Dynamics
-                        </h3>
-                        <div className="flex gap-2">
-                            <span className="text-xs font-mono text-slate-400 bg-black/20 px-2 py-1 rounded">t = 48h</span>
-                            <span className="text-xs font-mono text-slate-400 bg-black/20 px-2 py-1 rounded">Gen: 104</span>
+            {/* Split Section: Graph & Feed */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                {/* Main Graph Area */}
+                <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+                    <div className="flex justify-between items-center mb-8">
+                        <div>
+                            <h3 className="text-base font-semibold text-slate-900">Yield Performance</h3>
+                            <p className="text-sm text-slate-500">Standardized across all facilities</p>
+                        </div>
+                        <div className="flex bg-slate-100 rounded-lg p-1">
+                            <button className="px-3 py-1 text-xs font-medium bg-white rounded shadow-sm text-slate-900">Revenue</button>
+                            <button className="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-900">Volume</button>
                         </div>
                     </div>
 
-                    {/* The Cell Grid Visualization */}
-                    <div className="flex-1 bg-black/40 rounded-xl border border-white/5 p-4 relative overflow-hidden group">
-                        {/* Simulation of cells */}
-                        <div className="grid grid-cols-12 gap-2 h-full w-full opacity-80">
-                            {Array.from({ length: 48 }).map((_, i) => (
+                    {/* CSS-only Bar Chart */}
+                    <div className="h-64 flex items-end justify-between gap-4 px-2">
+                        {[45, 52, 49, 62, 58, 65, 72, 68, 75, 82, 85, 94].map((h, i) => (
+                            <div key={i} className="flex-1 flex flex-col justify-end group">
                                 <div
-                                    key={i}
-                                    className={`rounded-sm transition-all duration-1000 ${i % 20 === 0 ? 'bg-indigo-500/50 animate-pulse' : // Rare variant
-                                            'bg-emerald-500/40 hover:bg-emerald-400' // Standard cell
-                                        }`}
-                                    style={{
-                                        opacity: Math.random() * 0.5 + 0.5,
-                                    }}
-                                ></div>
-                            ))}
-                        </div>
-
-                        {/* Overlay Data */}
-                        <div className="absolute bottom-4 left-4 font-mono text-xs">
-                            <div className="text-emerald-400">Mutant Load: 0.00%</div>
-                            <div className="text-indigo-400">Protein Exp: 98.2%</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Side Stats Panel */}
-                <div className="lg:col-span-4 space-y-6">
-                    {/* Key Metric 1 */}
-                    <StatCard
-                        title="Fermentation Yield"
-                        value="4.2g/L"
-                        subtitle="Projected: 5.8g/L"
-                        pulseColor="bg-emerald-500"
-                    />
-
-                    {/* Key Metric 2 */}
-                    <StatCard
-                        title="ATP Consumption"
-                        value="Normal"
-                        subtitle="Metabolic Load: Optimized"
-                        pulseColor="bg-indigo-500"
-                    />
-
-                    {/* Action Panel */}
-                    <div className="bg-gradient-to-br from-indigo-900/50 to-indigo-950/50 border border-indigo-500/20 rounded-2xl p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-300">
-                                <Server size={20} />
+                                    className="w-full bg-blue-500/10 group-hover:bg-blue-600/20 rounded-t-sm transition-all relative overflow-hidden"
+                                    style={{ height: `${h}%` }}
+                                >
+                                    {/* Filled part */}
+                                    <div className="absolute bottom-0 left-0 w-full bg-blue-600 rounded-t-sm transition-all duration-500" style={{ height: `${h * 0.8}%` }}></div>
+                                </div>
+                                <div className="text-[10px] text-center text-slate-400 mt-2 font-medium">
+                                    {['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'][i]}
+                                </div>
                             </div>
-                            <h3 className="font-bold text-indigo-100">Quick Actions</h3>
-                        </div>
-                        <div className="space-y-3">
-                            <button className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-medium transition-colors text-left flex justify-between items-center group">
-                                Initiate Sequencing
-                                <span className="group-hover:translate-x-1 transition-transform">→</span>
-                            </button>
-                            <button className="w-full py-2 px-4 bg-white/5 hover:bg-white/10 text-slate-300 rounded-lg text-sm font-medium transition-colors text-left">
-                                Download Batch Log
-                            </button>
-                        </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Updates Feed */}
+                <div className="bg-white rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                    <div className="p-4 border-b border-slate-100 flex justify-between items-center">
+                        <h3 className="text-sm font-semibold text-slate-900">Live Updates</h3>
+                        <MoreHorizontal size={16} className="text-slate-400" />
+                    </div>
+                    <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                        <FeedItem
+                            title="Batch #492 Completed"
+                            desc="Boston Facility • Yield: 5.2g/L"
+                            time="12m ago"
+                            dot="bg-emerald-500"
+                        />
+                        <FeedItem
+                            title="New Strain Deployed"
+                            desc="Zurich Lab • E. coli K-12"
+                            time="2h ago"
+                            dot="bg-blue-500"
+                        />
+                        <FeedItem
+                            title="Optimization Alert"
+                            desc="System suggests temp adjustment"
+                            time="5h ago"
+                            dot="bg-amber-500"
+                        />
+                        <FeedItem
+                            title="Compliance Report"
+                            desc="Generated via API"
+                            time="1d ago"
+                            dot="bg-slate-300"
+                        />
+                    </div>
+                    <div className="p-3 border-t border-slate-100 bg-slate-50 rounded-b-xl">
+                        <button className="w-full text-xs font-medium text-slate-600 hover:text-slate-900 py-1">View All Activity</button>
                     </div>
                 </div>
             </div>
@@ -109,31 +130,34 @@ export default function DashboardOverview() {
     );
 }
 
-// Components
-function StatusBadge({ label, status, icon }: any) {
+function MetricCard({ label, value, change, period, icon }: any) {
     return (
-        <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-sm">
-            <span className="text-slate-400 text-xs">{icon}</span>
-            <div className="flex flex-col leading-none">
-                <span className="text-[10px] text-slate-500 uppercase font-bold">{label}</span>
-                <span className="text-xs font-mono text-slate-200">{status}</span>
+        <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-slate-300 transition-colors">
+            <div className="flex justify-between items-start mb-4">
+                <div className="p-2 bg-slate-50 rounded-lg">{icon}</div>
+                <div className="flex items-center text-emerald-600 text-xs font-bold bg-emerald-50 px-2 py-1 rounded-full">
+                    <TrendingUp size={12} className="mr-1" />
+                    {change}
+                </div>
             </div>
+            <div className="mb-1">
+                <h3 className="text-2xl font-bold text-slate-900 tracking-tight">{value}</h3>
+            </div>
+            <p className="text-xs text-slate-500 font-medium">{label}</p>
+            <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-wide">{period}</p>
         </div>
     );
 }
 
-function StatCard({ title, value, subtitle, pulseColor }: any) {
+function FeedItem({ title, desc, time, dot }: any) {
     return (
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-2xl relative overflow-hidden group hover:border-white/20 transition-all">
-            <div className={`absolute top-0 left-0 w-1 h-full ${pulseColor} opacity-50`}></div>
-            <div className="flex justify-between items-start mb-2">
-                <h4 className="text-slate-400 text-sm font-medium uppercase tracking-wider">{title}</h4>
-                <div className={`w-2 h-2 rounded-full ${pulseColor} shadow-[0_0_10px_currentColor] animate-pulse`}></div>
+        <div className="flex items-start gap-3">
+            <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${dot}`}></div>
+            <div>
+                <h4 className="text-xs font-semibold text-slate-900">{title}</h4>
+                <p className="text-xs text-slate-500 mt-0.5">{desc}</p>
+                <p className="text-[10px] text-slate-400 mt-1">{time}</p>
             </div>
-            <div className="text-3xl font-display font-bold text-white mb-1 group-hover:scale-105 transition-transform origin-left">
-                {value}
-            </div>
-            <p className="text-slate-500 text-sm">{subtitle}</p>
         </div>
     );
 }
