@@ -1,6 +1,6 @@
 'use client';
 
-import { ShoppingCart, Check, AlertTriangle } from 'lucide-react';
+import { ShoppingCart, Check, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { useState, ChangeEvent } from 'react';
 import PlasmidViewer from '../PlasmidViewer';
 
@@ -20,13 +20,28 @@ export default function OrderForm() {
         quantity: 1
     });
 
-    // Validation State
+    // Validation & UI State
     const [touched, setTouched] = useState({
         geneName: false,
         contact: false
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     // Handlers
+    const handleSubmit = () => {
+        if (!formData.strain) return; // Basic validation
+        setIsSubmitting(true);
+
+        // Simulate API call
+        setTimeout(() => {
+            setIsSubmitting(false);
+            setIsSuccess(true);
+            // Reset success message after 5 seconds to allow another order? 
+            // Or keep it persistent. Let's keep it persistent for the demo.
+        }, 1500);
+    };
+
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -368,9 +383,24 @@ export default function OrderForm() {
                         <br />You will receive a quote within 24h.
                     </div>
 
-                    <button className="w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 transition-colors">
-                        Submit Order Request
+                    <button
+                        onClick={handleSubmit}
+                        disabled={isSubmitting || isSuccess || !isStrainSelected}
+                        className="w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                        {isSubmitting ? (
+                            <span className="flex items-center gap-2">Processing...</span>
+                        ) : isSuccess ? (
+                            <span className="flex items-center gap-2"><CheckCircle2 /> Request Sent</span>
+                        ) : (
+                            'Submit Order Request'
+                        )}
                     </button>
+                    {isSuccess && (
+                        <div className="bg-emerald-50 text-emerald-700 p-4 rounded-xl text-sm border border-emerald-200 mt-4 animate-in fade-in slide-in-from-top-2">
+                            <strong>Success!</strong> Your configuration has been sent to our engineering team (ID: #REQ-{Math.floor(Math.random() * 10000)}). We will email you a quote shortly.
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
