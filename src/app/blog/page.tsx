@@ -1,7 +1,9 @@
 'use client';
 
+// ... (imports)
 import { Calendar, User, Tag } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const articles = [
     {
@@ -12,7 +14,7 @@ const articles = [
         author: "AmirMohammad Cheraghali",
         category: "Research",
         readTime: "6 min read",
-        image: "bg-amber-50 text-amber-600"
+        image: "/blog/metabolic-burden.png"
     },
     {
         id: 2,
@@ -22,7 +24,7 @@ const articles = [
         author: "Sogand Azadeh",
         category: "Engineering",
         readTime: "10 min read",
-        image: "bg-indigo-50 text-indigo-600"
+        image: "/blog/genetic-circuit.png"
     },
     {
         id: 3,
@@ -32,7 +34,7 @@ const articles = [
         author: "Tech Team",
         category: "Case Study",
         readTime: "5 min read",
-        image: "bg-emerald-50 text-emerald-600"
+        image: "/blog/bioreactor-scale.png"
     }
 ];
 
@@ -40,7 +42,7 @@ export default function Blog() {
     return (
         <div className="min-h-screen bg-slate-50 font-sans">
             {/* Header */}
-            <header className="bg-surface border-b border-border py-16">
+            <header className="bg-white border-b border-border py-16">
                 <div className="container px-6 mx-auto max-w-7xl text-center">
                     <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">Research Insights</h1>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -55,17 +57,22 @@ export default function Blog() {
                     {articles.map((article) => (
                         <article key={article.id} className="card bg-white border border-border rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
                             {/* Image Placeholder */}
-                            <div className={`h-48 ${article.image} flex items-center justify-center border-b border-border`}>
-                                <span className="text-muted-foreground/30 font-display font-bold text-4xl group-hover:scale-110 transition-transform duration-500">
-                                    {article.category[0]}
-                                </span>
+                            <div className="relative h-48 w-full border-b border-border overflow-hidden">
+                                <Image
+                                    src={article.image}
+                                    alt={article.title}
+                                    fill
+                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                />
+                                <div className="absolute top-4 left-4">
+                                    <span className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-foreground shadow-sm">
+                                        {article.category}
+                                    </span>
+                                </div>
                             </div>
 
                             <div className="p-6">
                                 <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
-                                    <span className="flex items-center gap-1 bg-slate-100 px-2 py-1 rounded-md font-medium text-slate-600">
-                                        <Tag size={12} /> {article.category}
-                                    </span>
                                     <span className="flex items-center gap-1">
                                         <Calendar size={12} /> {article.date}
                                     </span>
