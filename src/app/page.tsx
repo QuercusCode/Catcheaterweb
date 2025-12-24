@@ -1,12 +1,20 @@
 
+'use client';
+
+import { useState } from 'react';
 import ResearchKit from '@/components/sections/ResearchKit';
 import OrderForm from '@/components/sections/OrderForm';
 import SystemInfo from '@/components/sections/SystemInfo';
 import Mechanisms from '@/components/sections/Mechanisms';
+import ContactSupportModal from '@/components/ContactSupportModal';
 
 export default function Home() {
+  const [isSupportOpen, setIsSupportOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-background text-foreground font-sans">
+      <ContactSupportModal isOpen={isSupportOpen} onClose={() => setIsSupportOpen(false)} />
+
       {/* 1. Dashboard Header (Removed - Merged into Navbar) */}
 
       <div className="w-full max-w-[1920px] mx-auto px-6 py-8">
@@ -53,9 +61,12 @@ export default function Home() {
                   <p className="text-xs text-indigo-700/80 mb-3 leading-relaxed">
                     Contact our science team for custom plasmid design support.
                   </p>
-                  <a href="mailto:support@catcheater.bio" className="text-indigo-600 text-xs font-bold hover:text-indigo-800 hover:underline transition-colors flex items-center gap-1">
+                  <button
+                    onClick={() => setIsSupportOpen(true)}
+                    className="text-indigo-600 text-xs font-bold hover:text-indigo-800 hover:underline transition-colors flex items-center gap-1"
+                  >
                     Contact Support &rarr;
-                  </a>
+                  </button>
                 </div>
                 <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-100/50 rounded-full blur-2xl -mr-10 -mt-10" />
               </div>
