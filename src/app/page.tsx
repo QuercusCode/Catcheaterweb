@@ -53,9 +53,9 @@ export default function Home() {
                   <p className="text-xs text-indigo-700/80 mb-3 leading-relaxed">
                     Contact our science team for custom plasmid design support.
                   </p>
-                  <button className="text-indigo-600 text-xs font-bold hover:text-indigo-800 hover:underline transition-colors flex items-center gap-1">
+                  <a href="mailto:support@catcheater.bio" className="text-indigo-600 text-xs font-bold hover:text-indigo-800 hover:underline transition-colors flex items-center gap-1">
                     Contact Support &rarr;
-                  </button>
+                  </a>
                 </div>
                 <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-100/50 rounded-full blur-2xl -mr-10 -mt-10" />
               </div>
