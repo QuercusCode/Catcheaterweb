@@ -13,18 +13,18 @@ export default function Footer() {
                 <div>
                     <h4 className="font-bold text-white mb-4">Product</h4>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li><a href="#" className="hover:text-primary transition-colors">Studio</a></li>
-                        <li><a href="#" className="hover:text-primary transition-colors">Evaluation Kit</a></li>
-                        <li><a href="#" className="hover:text-primary transition-colors">Documentation</a></li>
+                        <li><a href="/pricing" className="hover:text-primary transition-colors">Pricing</a></li>
+                        <li><a href="/#products" className="hover:text-primary transition-colors">Evaluation Kit</a></li>
+                        <li><a href="/docs" className="hover:text-primary transition-colors">Documentation</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 className="font-bold text-white mb-4">Company</h4>
+                    <h4 className="font-bold text-white mb-4">Legal</h4>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li><a href="#" className="hover:text-primary transition-colors">About</a></li>
-                        <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
-                        <li><a href="#" className="hover:text-primary transition-colors">Contact</a></li>
+                        <li><a href="/legal/privacy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="/legal/terms" className="hover:text-primary transition-colors">Terms of Service</a></li>
+                        <li><a href="/about" className="hover:text-primary transition-colors">About</a></li>
                     </ul>
                 </div>
             </div>
