@@ -99,18 +99,121 @@ export default function Documentation() {
                         <section id="troubleshooting" className="space-y-6">
                             <h2 className="text-2xl font-bold text-foreground">Troubleshooting</h2>
 
-                            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-                                <div className="flex items-start gap-3">
-                                    <AlertTriangle className="text-yellow-600 mt-1" size={20} />
-                                    <div>
-                                        <h3 className="font-bold text-yellow-900">Low Yield?</h3>
-                                        <p className="text-sm text-yellow-800/80 mt-2 leading-relaxed">
-                                            If you observe lower total biomass but higher specific yield per cell, this is normal behavior. The Catcheater system eliminates non-productive biomass, so the final OD600 may be lower than a wild-type culture, but the protein concentration should be higher.
-                                        </p>
+                            {/* Section: Transformation Protocol */}
+                            <section id="transfection" className="space-y-6">
+                                <h2 className="text-2xl font-bold text-foreground">Protocol A: Transformation</h2>
+                                <p className="text-muted-foreground">Standard heat-shock transformation protocol for Catcheater plasmids.</p>
+
+                                <div className="bg-white border border-border rounded-xl overflow-hidden">
+                                    <table className="w-full text-sm text-left">
+                                        <thead className="bg-slate-50 font-bold border-b border-border">
+                                            <tr>
+                                                <th className="p-4 w-24">Step</th>
+                                                <th className="p-4">Action</th>
+                                                <th className="p-4 w-32">Conditions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-border">
+                                            <tr>
+                                                <td className="p-4 font-bold text-primary">1</td>
+                                                <td className="p-4">Thaw competent BL21(DE3) cells on ice.</td>
+                                                <td className="p-4 text-muted-foreground">4°C, 10 min</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="p-4 font-bold text-primary">2</td>
+                                                <td className="p-4">Add 1µL of supplied pCatch plasmid (50ng/µL).</td>
+                                                <td className="p-4 text-muted-foreground">Gentle mix</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="p-4 font-bold text-primary">3</td>
+                                                <td className="p-4">Incubate on ice.</td>
+                                                <td className="p-4 text-muted-foreground">30 min</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="p-4 font-bold text-primary">4</td>
+                                                <td className="p-4">Heat shock. Exact timing is critical.</td>
+                                                <td className="p-4 text-muted-foreground">42°C, 45 sec</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="p-4 font-bold text-primary">5</td>
+                                                <td className="p-4">Recover in SOC media (antibiotic-free).</td>
+                                                <td className="p-4 text-muted-foreground">37°C, 1 hr</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="p-4 font-bold text-primary">6</td>
+                                                <td className="p-4">Plate on LB agar (No Antibiotic needed for pCatch-v2).</td>
+                                                <td className="p-4 text-muted-foreground">Overnight</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <hr className="border-border" />
+
+                            {/* Section: Compatibility */}
+                            <section id="compatibility" className="space-y-6">
+                                <h2 className="text-2xl font-bold text-foreground">strain Compatibility</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="p-4 border border-emerald-200 bg-emerald-50 rounded-xl">
+                                        <h3 className="font-bold text-emerald-900 flex items-center gap-2">
+                                            <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                                            Recommended
+                                        </h3>
+                                        <ul className="mt-2 space-y-1 text-sm text-emerald-800">
+                                            <li>• BL21(DE3)</li>
+                                            <li>• BL21-Gold(DE3)</li>
+                                            <li>• Tuner(DE3)</li>
+                                        </ul>
+                                    </div>
+                                    <div className="p-4 border border-red-200 bg-red-50 rounded-xl">
+                                        <h3 className="font-bold text-red-900 flex items-center gap-2">
+                                            <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                                            Incompatible
+                                        </h3>
+                                        <ul className="mt-2 space-y-1 text-sm text-red-800">
+                                            <li>• DH5α (RecA- issues)</li>
+                                            <li>• TOP10 (No T7 polymerase)</li>
+                                            <li>• Mach1</li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
+
+                            <hr className="border-border" />
+
+                            {/* Section: Troubleshooting */}
+                            <section id="troubleshooting" className="space-y-6">
+                                <h2 className="text-2xl font-bold text-foreground">Troubleshooting</h2>
+
+                                <div className="space-y-4">
+                                    <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+                                        <div className="flex items-start gap-3">
+                                            <AlertTriangle className="text-yellow-600 mt-1" size={20} />
+                                            <div>
+                                                <h3 className="font-bold text-yellow-900">Observation: Low Final OD600</h3>
+                                                <p className="text-sm text-yellow-800/80 mt-2 leading-relaxed">
+                                                    <strong>Cause:</strong> The system is working correctly. You are observing the lysis of "cheater" sub-populations.
+                                                    <br />
+                                                    <strong>Action:</strong> Measure specific protein yield (mg/g biomass) rather than just optical density.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-slate-50 border border-border rounded-xl p-6">
+                                        <h3 className="font-bold text-foreground mb-2">Issue: No Colonies on Plate</h3>
+                                        <p className="text-sm text-muted-foreground mb-2">
+                                            Potential causes include heat-shock failure or dead competent cells.
+                                        </p>
+                                        <ul className="list-disc pl-5 text-sm text-muted-foreground space-y-1">
+                                            <li>Ensure water bath is exactly 42°C.</li>
+                                            <li>Verify plasmid concentration (should be >10ng/uL).</li>
+                                            <li><strong>Note:</strong> pCatch-v2 does not require antibiotics, but using Ampicillin plates will not harm the transformation if the <i>bla</i> gene module was selected.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
 
                     </div>
 
