@@ -7,13 +7,16 @@ import OrderForm from '@/components/sections/OrderForm';
 import SystemInfo from '@/components/sections/SystemInfo';
 import Mechanisms from '@/components/sections/Mechanisms';
 import ContactSupportModal from '@/components/ContactSupportModal';
+import WaitlistModal from '@/components/WaitlistModal';
 
 export default function Home() {
   const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   return (
     <main className="min-h-screen bg-background text-foreground font-sans">
       <ContactSupportModal isOpen={isSupportOpen} onClose={() => setIsSupportOpen(false)} />
+      <WaitlistModal isOpen={isWaitlistOpen} onClose={() => setIsWaitlistOpen(false)} />
 
       {/* 1. Dashboard Header (Removed - Merged into Navbar) */}
 
@@ -25,7 +28,10 @@ export default function Home() {
             <div className="sticky top-32 space-y-6">
 
               {/* Promo Banner (Revamped) */}
-              <div className="rounded-2xl p-6 relative overflow-hidden shadow-xl group cursor-pointer transition-transform hover:scale-[1.02]">
+              <div
+                className="rounded-2xl p-6 relative overflow-hidden shadow-xl group cursor-pointer transition-transform hover:scale-[1.02]"
+                onClick={() => setIsWaitlistOpen(true)}
+              >
                 {/* Background with Gradient & Texture */}
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 transition-all duration-500 group-hover:scale-105" />
 
