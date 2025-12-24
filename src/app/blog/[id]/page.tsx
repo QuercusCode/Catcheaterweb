@@ -13,7 +13,7 @@ const blogPosts = {
         author: "AmirMohammad Cheraghali",
         role: "Synthetic Biology & AI Lead",
         category: "Research",
-        readTime: "6 min read",
+        readTime: "8 min read",
         image: "bg-amber-50 text-amber-600",
         content: `
             <h3 class="text-2xl font-bold mb-4">The Paradox of High-Performance Strains</h3>
@@ -23,7 +23,14 @@ const blogPosts = {
             </p>
             <p class="mb-6 leading-relaxed text-muted-foreground">
                 A cell dedicating 30-50% of its resources to making your therapeutic protein grows significantly slower than a "cheater" cell—a mutant that has shed the plasmid or silenced the gene. 
-                Our data shows a growth rate differential ($\Delta\mu$) of approximately 0.15 $h^{-1}$.
+                Our data shows a growth rate differential ($\Delta\mu$) of approximately 0.15 $h^{-1}$. This seemingly small difference leverages the power of exponential growth against you.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4">The ATP Budget: Where does the energy go?</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                Translation is the most expensive process in the cell. Polymerizing amino acids into a polypeptide chain consumes 4 ATP equivalents per peptide bond. 
+                When you induce a strong promoter like T7, you are essentially hijacking the cell's entire energy budget. 
+                A "cheater" cell that stops this process suddenly has a massive surplus of ATP available for replication. It doesn't just grow faster; it thrives on the resources you wanted to turn into product.
             </p>
 
             <h3 class="text-2xl font-bold mb-4">The 40-Generation Crash</h3>
@@ -36,6 +43,15 @@ const blogPosts = {
                 Once the antibiotic in the media is degraded (which happens rapidly with beta-lactamases) or diluted, there is no selection pressure keeping the plasmid. 
                 The "cheaters" maximize their own fitness by doing nothing but replicating. They consume the expensive carbon source intended for your product and convert it into useless biomass.
             </p>
+            
+            <h3 class="text-2xl font-bold mb-4">Why Antibiotics Are Not Enough</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                 Standard practice relies on antibiotic resistance genes (like <i>bla</i> for Ampicillin) to maintain plasmids. However, this method has two fatal flaws in large-scale culture:
+            </p>
+            <ul class="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+                <li><strong>Cross-Protection:</strong> The beta-lactamase enzyme is secreted into the periplasm and often leaks into the media, detoxifying the environment for *all* cells, including plasmid-free cheaters.</li>
+                <li><strong>Metabolic Cost:</strong> Maintaining the resistance protein itself adds to the burden, further slowing down the productive cells.</li>
+            </ul>
 
             <h3 class="text-2xl font-bold mb-4">Reclaiming the ATP</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
@@ -51,13 +67,14 @@ const blogPosts = {
         author: "Sogand Azadeh",
         role: "Genetics & Epigenetics Lead",
         category: "Engineering",
-        readTime: "10 min read",
+        readTime: "12 min read",
         image: "bg-indigo-50 text-indigo-600",
         content: `
             <h3 class="text-2xl font-bold mb-4">Architecture of a Kill Switch</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
                 Biocontainment systems often fail because they are too "leaky" (killing cells when they shouldn't) or too slow (letting cheaters escape). 
                 To solve this, we decoupled the logic into two distinct modules: <strong>The Snitch</strong> (Sensor) and <strong>The Enforcer</strong> (Actuator).
+                This separation allows us to tune the sensitivity of the sensor without altering the lethality of the kill switch.
             </p>
 
             <h3 class="text-2xl font-bold mb-4">Module 1: The Snitch (Sensing Stress)</h3>
@@ -67,16 +84,33 @@ const blogPosts = {
                 When a cell is actively producing your difficult protein, the Snitch is active. It produces a steady stream of a specific repressor protein (Cl-434). 
                 <strong>Simply put: Working hard = Safety Signal ON.</strong>
             </p>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                We engineered the promoter library to offer varying sensitivities. For extremely toxic proteins, we use a "Low Sensitivity" Snitch that requires massive stress to trigger. For easy-to-express proteins, a "High Sensitivity" version ensures even minor slackers are caught.
+            </p>
 
             <h3 class="text-2xl font-bold mb-4">Module 2: The Enforcer (The Kill)</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
                 The "Enforcer" is a tightly regulated toxin-antitoxin system integrated into the genome or on a low-copy plasmid. 
                 The toxin gene is chemically repressed by the signal from the Snitch.
             </p>
+            <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 mb-8">
+                <h4 class="font-bold text-indigo-900 mb-2">The Logic Gate (AND NOT)</h4>
+                <p class="text-sm text-indigo-800">
+                    The circuit functions as a biological Boolean gate: <br/>
+                    <strong>Survival = (Has Plasmid) AND (Is Stressed)</strong>
+                </p>
+            </div>
             <ul class="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
                 <li><strong>Scenario A (Productive Cell):</strong> Snitch is ON -> Repressor made -> Toxin Silenced -> Cell Lives.</li>
                 <li><strong>Scenario B (Cheater Cell):</strong> No protein production -> No Stress -> Snitch OFF -> No Repressor -> Toxin Expressed -> Cell Lysis.</li>
             </ul>
+
+            <h3 class="text-2xl font-bold mb-4">Preventing Escape Mutants</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                A common failure mode in kill switches is mutation of the toxin gene itself. We mitigated this by using <strong>redundancy</strong>. 
+                The Enforcer module contains two distinct toxins targeting different cellular machinery (e.g., Gyrase inhibition and Membrane depolarization). 
+                The probability of a cell simultaneously mutating both toxin genes to escape is calculated at less than $10^{-14}$.
+            </p>
 
             <h3 class="text-2xl font-bold mb-4">The Result: Pure Yield</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
@@ -92,13 +126,14 @@ const blogPosts = {
         author: "Tech Team",
         role: "CatchEater R&D",
         category: "Case Study",
-        readTime: "5 min read",
+        readTime: "7 min read",
         image: "bg-emerald-50 text-emerald-600",
         content: `
             <h3 class="text-2xl font-bold mb-4">The Linear Scaling Myth</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
                 Every bioprocess engineer knows that what works in a 250mL shake flask rarely behaves the same in a 10,000L steel tank. 
                 Shear stress, oxygen gradients, and mixing times introduce new selection pressures that accelerate genetic drift.
+                The extended seed trains required to inoculate a large vessel mean that cells have undergone dozens of doublings before the production phase even begins.
             </p>
             
             <h3 class="text-2xl font-bold mb-4">Trial Parameters</h3>
@@ -143,6 +178,15 @@ const blogPosts = {
                 <strong>2. Titer:</strong> Final protein titer for CatchEater was 3.8 g/L compared to 1.9 g/L for the control.
                 <br/><br/>
                 <strong>3. Cost:</strong> Eliminating the antibiotic reduced media costs by 12% at this scale, with projected savings of over $50k/run at the 10,000L scale.
+            </p>
+            
+            <h3 class="text-2xl font-bold mb-4">Regulatory & Downstream Benefits</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                Beyond yield, the removal of antibiotics simplifies the entire downstream processing (DSP) workflow. 
+                There is no need to validate the removal of trace antibiotics from the final product, a key requirement for FDA approval of injectables.
+                <br/><br/>
+                Furthermore, the CatchEater system significantly reduces the bioburden of "dead" biomass. While cheaters are lysed, they convert their biomass back into soluble amino acids and nucleotides, which can be scavenged by the productive survivors. 
+                This effectively turns your worst enemy (the cheater) into feedstock for your product.
             </p>
         `
     }
