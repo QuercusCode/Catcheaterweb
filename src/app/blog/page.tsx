@@ -35,6 +35,36 @@ const articles = [
         category: "Case Study",
         readTime: "5 min read",
         image: "/blog/bioreactor-scale.png"
+    },
+    {
+        id: 4,
+        title: "The 250 Generation Challenge: Why Long-Term Fermentation Fails",
+        excerpt: "Continuous biomanufacturing is the holy grail of efficiency, but genetic drift makes it nearly impossible. We explore how 'Cheater' mutations accumulate over time and why traditional selection methods fail after generation 60.",
+        date: "Dec 22, 2025",
+        author: "Dr. Elena Vance",
+        category: "Deep Tech",
+        readTime: "9 min read",
+        image: "/blog/genetic-circuit.png"
+    },
+    {
+        id: 5,
+        title: "Bio-Manufacturing in 2030: The End of Antibiotics?",
+        excerpt: "Regulatory pressure from the FDA and EMA is mounting to remove antibiotics from the manufacturing chain. How will the industry adapt when the primary method of plasmid retention is banned?",
+        date: "Dec 20, 2025",
+        author: "AmirMohammad Cheraghali",
+        category: "Industry Outlook",
+        readTime: "7 min read",
+        image: "/blog/metabolic-burden.png"
+    },
+    {
+        id: 6,
+        title: "ROI Analysis: The Hidden Cost of Batch Failure",
+        excerpt: "A single crashed fermentation tank can cost upwards of $250,000 in lost media, time, and opportunity cost. We break down the unit economics of 'Stability Assurance' and why it pays for itself in a single run.",
+        date: "Dec 15, 2025",
+        author: "Strategy Team",
+        category: "Economics",
+        readTime: "6 min read",
+        image: "/blog/bioreactor-scale.png"
     }
 ];
 

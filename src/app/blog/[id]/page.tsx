@@ -189,6 +189,123 @@ const blogPosts = {
                 This effectively turns your worst enemy (the cheater) into feedstock for your product.
             </p>
         `
+    },
+    4: {
+        title: "The 250 Generation Challenge: Why Long-Term Fermentation Fails",
+        subtitle: "When evolution works against you: A technical deep dive into genetic drift.",
+        date: "Dec 22, 2025",
+        author: "Dr. Elena Vance",
+        role: "Chief Scientific Officer",
+        category: "Deep Tech",
+        readTime: "9 min read",
+        image: "bg-indigo-50 text-indigo-600",
+        content: `
+            <h3 class="text-2xl font-bold mb-4">The Evolution of Failure</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                Continuous biomanufacturing is the holy grail of the industry. Imagine running a bioreactor for 30 days straight instead of 3. 
+                The economics are transformative. But biology hates vacuum, and it hates inefficiency. 
+                Carrying a plasmid that forces the cell to produce 30% of its dry weight in foreign protein is a massive evolutionary disadvantage.
+            </p>
+
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8">
+                <h4 class="font-bold text-indigo-900 mb-2">The Mutation Math</h4>
+                <p class="text-sm text-indigo-800">
+                    With a mutation rate of roughly $10^{-9}$ per base pair per generation, and a culture density of $10^{11}$ cells/mL, every possible single-point mutation occurs thousands of times per hour in a 10,000L tank.
+                    Mutations that break the metabolic burden (i.e., stop production) confer a ~20% growth advantage.
+                </p>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-4">The "Cheater" Sweeps</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                Once a cheater mutant appears, it sweeps through the population mathematically. 
+                By generation 60, what started as a single cell has grown to dominate 50% of the biomass. 
+                By generation 80, your reactor is essentially a soup of useless biomass consuming expensive glucose.
+                <br/><br/>
+                Traditional antibiotic selection works for generation 0-20, but the secreted beta-lactamase destroys the antibiotic in the media, leaving the later generations completely unprotected.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4">The Catcheater Solution: Negative Selection</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                We don't rely on antibiotics. We assume the cheater will arise. 
+                Our "Snitch" circuit actively monitors metabolic stress. A productive cell is a stressed cell. 
+                If a cell stops being stressed (because it mutated the plasmid), the "Enforcer" module kills it. 
+                We effectively turn the evolutionary advantage on its head: <strong>Only the burdened survive.</strong>
+            </p>
+        `
+    },
+    5: {
+        title: "Bio-Manufacturing in 2030: The End of Antibiotics?",
+        subtitle: "Regulatory winds are shifting. Is your process ready for an antibiotic-free future?",
+        date: "Dec 20, 2025",
+        author: "AmirMohammad Cheraghali",
+        role: "CEO & Founder",
+        category: "Industry Outlook",
+        readTime: "7 min read",
+        image: "bg-amber-50 text-amber-600",
+        content: `
+            <h3 class="text-2xl font-bold mb-4">The Coming Ban</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                The FDA and EMA have been signalling for years that the use of beta-lactam antibiotics (like Ampicillin) in the production of injectables is a safety risk. 
+                In 2024, new guidance documents suggested a phased reduction in their use for GMP processes. 
+                By 2030, we expect a near-total ban on common resistance markers in commercial upstream processing.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4">The Auxotrophy Trap</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                The current alternative? Auxotrophic, antibiotic-free strains (like <i>dapA</i> mutants). 
+                But these are finicky, require expensive specialized media, and often suffer from poor growth kinetics. 
+                They are a patch, not a solution. They don't solve the stability problem; they just remove the antibiotic.
+            </p>
+            
+             <h3 class="text-2xl font-bold mb-4">The "Clean Label" Bioprocess</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                Catcheater offers a third way: <strong>Addiction Modules.</strong> 
+                Our system doesn't need special media. It doesn't need expensive antibiotics. 
+                It effectively creates a "Clean Label" fermentation process. 
+                <br/><br/>
+                This isn't just about compliance. It's about cost. No antibiotics means cheaper media, simpler waste disposal (no hazardous bio-waste), and easier downstream purification. 
+                It is the future of sustainable biomanufacturing.
+            </p>
+        `
+    },
+    6: {
+        title: "ROI Analysis: The Hidden Cost of Batch Failure",
+        subtitle: "Why 'Good Enough' stability is costing you millions.",
+        date: "Dec 15, 2025",
+        author: "Strategy Team",
+        role: "Financial Analysis",
+        category: "Economics",
+        readTime: "6 min read",
+        image: "bg-blue-50 text-blue-600",
+        content: `
+            <h3 class="text-2xl font-bold mb-4">The Unit Economics of a Crash</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                Let's break down the cost of a single failed run in a 2,000L mammalian cell perfusion reactor or bacterial fermenter.
+            </p>
+
+             <ul class="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
+                <li><strong>Media Cost:</strong> $40,000 - $80,000</li>
+                <li><strong>Labor (2 weeks):</strong> $25,000</li>
+                <li><strong>Vessel Scheduling Cost:</strong> $100,000 (Opportunity Cost)</li>
+                <li><strong>Downstream Prep:</strong> $15,000</li>
+            </ul>
+
+             <div class="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+                <h4 class="font-bold text-red-900 mb-2">Total Loss: ~$200,000+</h4>
+                <p class="text-sm text-red-800">
+                    And this is just the direct cost. If this batch was for a clinical trial deadline, the cost in stock price or funding milestones is incalculable.
+                </p>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-4">Buying Insurance for $500</h3>
+            <p class="mb-6 leading-relaxed text-muted-foreground">
+                The Catcheater licensing model is effectively an insurance policy. 
+                For a fraction of the cost of the media, you guarantee that the strain remains genetically stable. 
+                <br/><br/>
+                If our system saves even <strong>one</strong> batch from crashing in a year, the ROI is over 100x. 
+                In an industry where "batch failure" is often accepted as "just biology," we argue that stability is a solvable engineering problem.
+            </p>
+        `
     }
 };
 
