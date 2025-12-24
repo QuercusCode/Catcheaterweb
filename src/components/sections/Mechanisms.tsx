@@ -19,7 +19,7 @@ export default function Mechanisms() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
                     {/* LEFT: Scrolling Text Steps */}
-                    <div className="space-y-24 py-12 pb-96">
+                    <div className="space-y-24 py-12 pb-24">
                         {/* Intro */}
                         <Step
                             idx={0}
@@ -106,7 +106,7 @@ function Step({ idx, title, subtitle, text, icon, onActive }: any) {
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: ["start center", "end center"]
+        offset: ["start 0.8", "end center"]
     });
 
     // When this comes into view, trigger update
