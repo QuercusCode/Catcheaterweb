@@ -27,6 +27,7 @@ const blogPosts = {
             </p>
 
             <h3 class="text-2xl font-bold mb-4">The ATP Budget: Where does the energy go?</h3>
+            <img src="/blog/inline-metabolic.png" alt="Nano-scale visualization of metabolic burden" class="w-full rounded-xl my-6 border border-border shadow-sm" />
             <p class="mb-6 leading-relaxed text-muted-foreground">
                 Translation is the most expensive process in the cell. Polymerizing amino acids into a polypeptide chain consumes 4 ATP equivalents per peptide bond. 
                 When you induce a strong promoter like T7, you are essentially hijacking the cell's entire energy budget. 
@@ -76,6 +77,7 @@ const blogPosts = {
                 To solve this, we decoupled the logic into two distinct modules: <strong>The Snitch</strong> (Sensor) and <strong>The Enforcer</strong> (Actuator).
                 This separation allows us to tune the sensitivity of the sensor without altering the lethality of the kill switch.
             </p>
+            <img src="/blog/inline-circuit.png" alt="Genetic circuit logic gate visualization" class="w-full rounded-xl my-6 border border-border shadow-sm" />
 
             <h3 class="text-2xl font-bold mb-4">Module 1: The Snitch (Sensing Stress)</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
@@ -170,6 +172,8 @@ const blogPosts = {
                     </tbody>
                 </table>
             </div>
+            
+            <img src="/blog/inline-scale.png" alt="Bioreactor fluid dynamics visualization" class="w-full rounded-xl my-6 border border-border shadow-sm" />
 
             <h3 class="text-2xl font-bold mb-4">Outcomes</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
@@ -214,6 +218,8 @@ const blogPosts = {
                     Mutations that break the metabolic burden (i.e., stop production) confer a ~20% growth advantage.
                 </p>
             </div>
+            
+            <img src="/blog/inline-drift.png" alt="Visualization of cheater cells overtaking population" class="w-full rounded-xl my-6 border border-border shadow-sm" />
 
             <h3 class="text-2xl font-bold mb-4">The "Cheater" Sweeps</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
@@ -249,6 +255,8 @@ const blogPosts = {
                 In 2024, new guidance documents suggested a phased reduction in their use for GMP processes. 
                 By 2030, we expect a near-total ban on common resistance markers in commercial upstream processing.
             </p>
+            
+            <img src="/blog/inline-future.png" alt="Futuristic clean biotech facility" class="w-full rounded-xl my-6 border border-border shadow-sm" />
 
             <h3 class="text-2xl font-bold mb-4">The Auxotrophy Trap</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
@@ -282,6 +290,8 @@ const blogPosts = {
             <p class="mb-6 leading-relaxed text-muted-foreground">
                 Let's break down the cost of a single failed run in a 2,000L mammalian cell perfusion reactor or bacterial fermenter.
             </p>
+            
+            <img src="/blog/inline-roi.png" alt="Nano-scale visualization of biological wealth" class="w-full rounded-xl my-6 border border-border shadow-sm" />
 
              <ul class="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
                 <li><strong>Media Cost:</strong> $40,000 - $80,000</li>

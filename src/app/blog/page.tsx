@@ -44,7 +44,7 @@ const articles = [
         author: "Dr. Elena Vance",
         category: "Deep Tech",
         readTime: "9 min read",
-        image: "/blog/genetic-circuit.png"
+        image: "/blog/genetic-drift.png"
     },
     {
         id: 5,
@@ -54,7 +54,7 @@ const articles = [
         author: "AmirMohammad Cheraghali",
         category: "Industry Outlook",
         readTime: "7 min read",
-        image: "/blog/metabolic-burden.png"
+        image: "/blog/future-biomanufacturing.png"
     },
     {
         id: 6,
@@ -64,7 +64,7 @@ const articles = [
         author: "Strategy Team",
         category: "Economics",
         readTime: "6 min read",
-        image: "/blog/bioreactor-scale.png"
+        image: "/blog/roi-analysis.png"
     }
 ];
 
