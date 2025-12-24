@@ -30,7 +30,7 @@ export default function About() {
                         Stop Feeding the <span className="text-primary italic">Cheaters</span>.
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        We are a team of synthetic biologists and engineers dedicated to solving the plasmid instability problem that plagues industrial fermentation.
+                        Engineering autonomous genetic safeguards to eliminate plasmid instability and redefine industrial bioproduction.
                     </p>
                 </div>
             </section>
@@ -77,7 +77,7 @@ export default function About() {
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-display font-bold text-foreground mb-4">Meet the Minds</h2>
                         <p className="text-muted-foreground max-w-2xl mx-auto">
-                            Our team combines decades of experience in microbiology, genetic engineering, and industrial bioprocessing.
+                            Pioneering the future of fermentation through precision genetic engineering and AI-driven design.
                         </p>
                     </div>
 
