@@ -208,7 +208,7 @@ export default function Documentation() {
                                         </p>
                                         <ul className="list-disc pl-5 text-sm text-muted-foreground space-y-1">
                                             <li>Ensure water bath is exactly 42°C.</li>
-                                            <li>Verify plasmid concentration (should be >10ng/uL).</li>
+                                            <li>Verify plasmid concentration (should be &gt;10ng/uL).</li>
                                             <li><strong>Note:</strong> pCatch-v2 does not require antibiotics, but using Ampicillin plates will not harm the transformation if the <i>bla</i> gene module was selected.</li>
                                         </ul>
                                     </div>
