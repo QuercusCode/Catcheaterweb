@@ -1,10 +1,5 @@
 'use client';
 
-import { Activity, Package, AlertCircle, ArrowUpRight } from 'lucide-react';
-import Link from 'next/link';
-
-'use client';
-
 import { Activity, ShieldCheck, Moon, Wind } from 'lucide-react';
 import { motion } from 'framer-motion';
 
