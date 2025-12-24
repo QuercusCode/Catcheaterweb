@@ -1,11 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import { Book, FileText, AlertTriangle, Search } from 'lucide-react';
 import Link from 'next/link';
+import ContactSupportModal from '@/components/ContactSupportModal';
 
 export default function Documentation() {
+    const [isContactOpen, setIsContactOpen] = useState(false);
+
     return (
         <div className="min-h-screen bg-background font-sans max-w-7xl mx-auto">
+            <ContactSupportModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+
             <div className="px-6 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 
@@ -24,7 +30,14 @@ export default function Documentation() {
                                 <h4 className="font-bold text-xs uppercase tracking-wider text-muted mb-4">Resources</h4>
                                 <ul className="space-y-2">
                                     <li><a href="#faq" className="block text-sm text-muted-foreground hover:text-foreground px-3 py-1">FAQ</a></li>
-                                    <li><a href="#contact" className="block text-sm text-muted-foreground hover:text-foreground px-3 py-1">Contact Science Team</a></li>
+                                    <li>
+                                        <button
+                                            onClick={() => setIsContactOpen(true)}
+                                            className="block text-sm text-muted-foreground hover:text-foreground px-3 py-1 text-left w-full"
+                                        >
+                                            Contact Science Team
+                                        </button>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -127,6 +140,36 @@ export default function Documentation() {
                                         Cheater cells are lysed and their biomass is recycled by the productive population, effectively converting burden capability into yield.
                                     </p>
                                 </div>
+                                <div className="bg-surface border border-border rounded-xl p-6">
+                                    <h3 className="font-bold text-foreground mb-2">Does CatchEater impose a metabolic burden?</h3>
+                                    <p className="text-sm text-muted-foreground">
+                                        The sensor circuit is designed to be extremely lightweight. In comparative studies, the burden of maintaining the circuit is negligible compared to the yield gains from improved population stability.
+                                    </p>
+                                </div>
+                                <div className="bg-surface border border-border rounded-xl p-6">
+                                    <h3 className="font-bold text-foreground mb-2">Can I run this without antibiotics?</h3>
+                                    <p className="text-sm text-muted-foreground">
+                                        Yes. Our pCatch-v2 backbone includes an auxotrophic complementation module, allowing for antibiotic-free fermentation when used with compatible host strains.
+                                    </p>
+                                </div>
+                                <div className="bg-surface border border-border rounded-xl p-6">
+                                    <h3 className="font-bold text-foreground mb-2">Is the system scalable?</h3>
+                                    <p className="text-sm text-muted-foreground">
+                                        Absolutely. The system has been validated from microplate scale up to 10,000L industrial bioreactors. The mechanism relies on intracellular sensing, which is volume-independent.
+                                    </p>
+                                </div>
+                                <div className="bg-surface border border-border rounded-xl p-6">
+                                    <h3 className="font-bold text-foreground mb-2">How long does implementation take?</h3>
+                                    <p className="text-sm text-muted-foreground">
+                                        For standard proteins, we can ship a custom sensor strain within 2-3 weeks. Complex pathways may require a 4-6 week optimization pilot.
+                                    </p>
+                                </div>
+                                <div className="bg-surface border border-border rounded-xl p-6">
+                                    <h3 className="font-bold text-foreground mb-2">Are there regulatory concerns?</h3>
+                                    <p className="text-sm text-muted-foreground">
+                                        The system uses standard GRAS (Generally Recognized As Safe) biological parts. It does not introduce novel toxins or allergens, simplifying the regulatory pathway for your final product.
+                                    </p>
+                                </div>
                             </div>
                         </section>
 
@@ -147,6 +190,6 @@ export default function Documentation() {
 
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
