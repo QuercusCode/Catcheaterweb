@@ -47,7 +47,7 @@ export default function Home() {
                   </h3>
 
                   <p className="mb-6 text-indigo-100/90 text-sm leading-relaxed font-medium">
-                    Get priority sequencing and <span className="text-purple-300 font-bold decoration-purple-400 underline decoration-2 underline-offset-2">50% off</span> your first evaluation kit.
+                    Secure early access to the <span className="font-bold text-white">Enforcer Module</span> and get <span className="text-purple-300 font-bold decoration-purple-400 underline decoration-2 underline-offset-2">50% off</span> your first evaluation kit.
                   </p>
 
                   <button className="w-full bg-white text-indigo-900 py-3 rounded-xl font-bold text-sm shadow-lg shadow-indigo-900/20 hover:bg-indigo-50 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">

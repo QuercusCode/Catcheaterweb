@@ -82,7 +82,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                             <>
                                 <h3 className="text-2xl font-display font-bold text-slate-900 mb-2">Join Early Access</h3>
                                 <p className="text-slate-500 mb-8 text-sm leading-relaxed">
-                                    Be the first to access our new high-throughput squencing platform and get <span className="text-purple-600 font-bold">50% off</span> your first order.
+                                    Be the first to access the <span className="font-bold text-indigo-700">CatchEater™ Cheater Elimination System</span> and get <span className="text-purple-600 font-bold">50% off</span> your first evaluation kit.
                                 </p>
 
                                 <form onSubmit={handleSubmit} className="w-full space-y-4">
