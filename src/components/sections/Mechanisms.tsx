@@ -19,7 +19,7 @@ export default function Mechanisms() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
                     {/* LEFT: Scrolling Text Steps */}
-                    <div className="space-y-24 py-12">
+                    <div className="space-y-24 py-12 pb-96">
                         {/* Intro */}
                         <Step
                             idx={0}
@@ -84,8 +84,8 @@ export default function Mechanisms() {
                                     <div
                                         key={s}
                                         className={`transition-all duration-500 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border ${activeStage === s ? 'bg-slate-900 text-white border-slate-900 scale-110' :
-                                                activeStage > s ? 'bg-slate-200 text-slate-500 border-slate-200' :
-                                                    'bg-white text-slate-300 border-slate-200'
+                                            activeStage > s ? 'bg-slate-200 text-slate-500 border-slate-200' :
+                                                'bg-white text-slate-300 border-slate-200'
                                             }`}
                                     >
                                         Step {s}
