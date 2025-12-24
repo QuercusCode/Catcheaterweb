@@ -181,7 +181,7 @@ const blogPosts = {
                 <br/><br/>
                 <strong>2. Titer:</strong> Final protein titer for Catcheater was 3.8 g/L compared to 1.9 g/L for the control.
                 <br/><br/>
-                <strong>3. Cost:</strong> Eliminating the antibiotic reduced media costs by 12% at this scale, with projected savings of over $50k/run at the 10,000L scale.
+                <strong>3. Cost:</strong> Eliminating the antibiotic reduced media costs by 12% at this scale, with projected savings of over €50k/run at the 10,000L scale.
             </p>
             
             <h3 class="text-2xl font-bold mb-4">Regulatory & Downstream Benefits</h3>
@@ -294,20 +294,20 @@ const blogPosts = {
             <img src="/blog/inline-roi.png" alt="Nano-scale visualization of biological wealth" class="w-full rounded-xl my-6 border border-border shadow-sm" />
 
              <ul class="list-disc pl-6 mb-6 space-y-2 text-muted-foreground">
-                <li><strong>Media Cost:</strong> $40,000 - $80,000</li>
-                <li><strong>Labor (2 weeks):</strong> $25,000</li>
-                <li><strong>Vessel Scheduling Cost:</strong> $100,000 (Opportunity Cost)</li>
-                <li><strong>Downstream Prep:</strong> $15,000</li>
+                <li><strong>Media Cost:</strong> €40,000 - €80,000</li>
+                <li><strong>Labor (2 weeks):</strong> €25,000</li>
+                <li><strong>Vessel Scheduling Cost:</strong> €100,000 (Opportunity Cost)</li>
+                <li><strong>Downstream Prep:</strong> €15,000</li>
             </ul>
 
              <div class="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
-                <h4 class="font-bold text-red-900 mb-2">Total Loss: ~$200,000+</h4>
+                <h4 class="font-bold text-red-900 mb-2">Total Loss: ~€200,000+</h4>
                 <p class="text-sm text-red-800">
                     And this is just the direct cost. If this batch was for a clinical trial deadline, the cost in stock price or funding milestones is incalculable.
                 </p>
             </div>
 
-            <h3 class="text-2xl font-bold mb-4">Buying Insurance for $500</h3>
+            <h3 class="text-2xl font-bold mb-4">Buying Insurance for €500</h3>
             <p class="mb-6 leading-relaxed text-muted-foreground">
                 The Catcheater licensing model is effectively an insurance policy. 
                 For a fraction of the cost of the media, you guarantee that the strain remains genetically stable. 

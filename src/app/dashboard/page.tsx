@@ -56,7 +56,7 @@ export default function DashboardOverview() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
                 <MetricCard
                     label="Total Savings"
-                    value="$1.24M"
+                    value="€1.24M"
                     change="+18%"
                     period="vs last quarter"
                     icon={<Wallet className="text-blue-600" size={20} />}
@@ -134,7 +134,7 @@ export default function DashboardOverview() {
                                 </div>
                                 {/* Tooltip */}
                                 <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded pointer-events-none z-10 whitespace-nowrap">
-                                    {viewMode === 'revenue' ? `$${(h * 0.8 * 1.5).toFixed(1)}k` : `${h * 10}L`}
+                                    {viewMode === 'revenue' ? `€${(h * 0.8 * 1.5).toFixed(1)}k` : `${h * 10}L`}
                                 </div>
                             </div>
                         ))}

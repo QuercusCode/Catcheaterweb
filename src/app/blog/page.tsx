@@ -59,7 +59,7 @@ const articles = [
     {
         id: 6,
         title: "ROI Analysis: The Hidden Cost of Batch Failure",
-        excerpt: "A single crashed fermentation tank can cost upwards of $250,000 in lost media, time, and opportunity cost. We break down the unit economics of 'Stability Assurance' and why it pays for itself in a single run.",
+        excerpt: "A single crashed fermentation tank can cost upwards of €250,000 in lost media, time, and opportunity cost. We break down the unit economics of 'Stability Assurance' and why it pays for itself in a single run.",
         date: "Dec 15, 2025",
         author: "Strategy Team",
         category: "Economics",
