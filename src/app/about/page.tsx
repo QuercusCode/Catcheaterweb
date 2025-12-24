@@ -30,7 +30,7 @@ export default function About() {
                         Stop Feeding the <span className="text-primary italic">Cheaters</span>.
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        Engineering autonomous genetic safeguards to eliminate plasmid instability and redefine industrial bioproduction.
+                        Engineering autonomous genetic safeguards to detect and eliminate non-productive "cheater" cells, maximizing protein yield and purity.
                     </p>
                 </div>
             </section>
