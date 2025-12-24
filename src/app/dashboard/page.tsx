@@ -1,97 +1,195 @@
 'use client';
 
-import { Activity, ShieldCheck, Moon, Wind } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Activity, ArrowUpRight, BarChart3, FlaskConical, History, Mic2, Settings2, Share2, Timer } from 'lucide-react';
 
 export default function DashboardOverview() {
     return (
-        <div className="space-y-8 h-full flex flex-col">
-            {/* Header with 'Zen' Vibe */}
-            <div className="flex items-center justify-between">
+        <div className="space-y-6 h-full font-sans text-slate-800">
+            {/* Professional Header */}
+            <div className="flex items-center justify-between border-b border-slate-200 pb-6">
                 <div>
-                    <h1 className="text-3xl font-display font-bold text-slate-800">Peace of Mind Mode</h1>
-                    <p className="text-slate-500">System status overview.</p>
+                    <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600">
+                        Fermentation Command Center
+                    </h1>
+                    <p className="text-sm font-medium text-slate-500 mt-1">
+                        Facility: <span className="text-slate-900">Cambridge, MA (Site A)</span> • Status: <span className="text-emerald-600 font-bold">OPERATIONAL</span>
+                    </p>
                 </div>
-                <div className="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full border border-emerald-100">
-                    <Moon size={16} />
-                    <span className="text-sm font-bold">Night Watch Active</span>
+                <div className="flex gap-3">
+                    <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors shadow-sm">
+                        <History size={16} className="text-slate-500" />
+                        Export Logs
+                    </button>
+                    <button className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors shadow-sm">
+                        <Settings2 size={16} />
+                        Configure Parameters
+                    </button>
                 </div>
             </div>
 
-            {/* MAIN VISUAL: The 'System Heartbeat' */}
-            <div className="flex-1 min-h-[400px] bg-slate-900 rounded-3xl relative overflow-hidden flex items-center justify-center border border-slate-800 shadow-2xl">
+            {/* Top Metrics Row - High Density */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <MetricCard
+                    label="Current Yield"
+                    value="4.2 g/L"
+                    trend="+12% vs Std"
+                    icon={<FlaskConical size={18} />}
+                    trendColor="text-emerald-600"
+                />
+                <MetricCard
+                    label="Plasmid Retention"
+                    value="99.98%"
+                    trend="Stable (48h)"
+                    icon={<Activity size={18} />}
+                    trendColor="text-blue-600"
+                />
+                <MetricCard
+                    label="Active Cheater Load"
+                    value="0.00%"
+                    trend="Below Detection"
+                    icon={<Mic2 size={18} />}
+                    trendColor="text-emerald-600"
+                />
+                <MetricCard
+                    label="Est. Completion"
+                    value="14h 20m"
+                    trend="On Schedule"
+                    icon={<Timer size={18} />}
+                    trendColor="text-slate-600"
+                />
+            </div>
 
-                {/* Background Atmosphere */}
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 opacity-90"></div>
+            {/* Main Content Area */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[500px]">
 
-                {/* Center Pulse Animation */}
-                <div className="relative z-10 flex flex-col items-center text-center p-8">
-                    <div className="relative mb-12">
-                        {/* Outer Ripples */}
-                        <motion.div
-                            className="absolute inset-0 bg-emerald-500/20 rounded-full blur-xl"
-                            animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.1, 0.3] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        />
-                        <motion.div
-                            className="absolute inset-0 bg-emerald-500/10 rounded-full blur-2xl"
-                            animate={{ scale: [1, 2, 1], opacity: [0.2, 0, 0.2] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                        />
-
-                        {/* Core Shield */}
-                        <div className="w-48 h-48 bg-gradient-to-b from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center shadow-[0_0_60px_rgba(16,185,129,0.4)] relative z-20 border-4 border-emerald-300/20 backdrop-blur-sm">
-                            <ShieldCheck size={80} className="text-white drop-shadow-md" />
+                {/* Chart Area (2/3 width) */}
+                <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm p-6 flex flex-col">
+                    <div className="flex justify-between items-center mb-6">
+                        <h3 className="font-bold text-slate-900 flex items-center gap-2">
+                            <BarChart3 size={18} className="text-slate-500" />
+                            Live Bioreactor Telemetry
+                        </h3>
+                        <div className="flex gap-2">
+                            <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded border border-emerald-100">
+                                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                LIVE
+                            </div>
+                            <span className="text-xs font-medium text-slate-400 border border-slate-100 px-2 py-1 rounded">24h View</span>
                         </div>
                     </div>
 
-                    <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight">
-                        System Secure
-                    </h2>
-                    <p className="text-emerald-200/80 text-xl font-light mb-8 max-w-lg mx-auto leading-relaxed">
-                        Bioreactors 1-4 are operating at 100% stability.
-                        <br />Zero mutations detected.
-                    </p>
+                    {/* Simulated Professional Chart */}
+                    <div className="flex-1 w-full bg-slate-50 rounded-lg border border-slate-100 relative overflow-hidden p-4">
+                        {/* Grid Lines */}
+                        <div className="absolute inset-x-0 top-1/4 h-px bg-slate-200/50 dashed"></div>
+                        <div className="absolute inset-x-0 top-2/4 h-px bg-slate-200/50 dashed"></div>
+                        <div className="absolute inset-x-0 top-3/4 h-px bg-slate-200/50 dashed"></div>
 
-                    <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-6 py-3 backdrop-blur-md">
-                        <Wind className="text-emerald-400 animate-pulse" size={20} />
-                        <span className="text-slate-300 font-medium tracking-wide">
-                            "You can go home. We are watching the cells."
-                        </span>
+                        {/* Chart Content */}
+                        <div className="relative h-full flex items-end justify-between px-2 gap-1 overflow-hidden opacity-90">
+                            {/* Simulated Curves using standard divs for reliability */}
+                            <svg className="absolute inset-0 w-full h-full p-4 overflow-visible" preserveAspectRatio="none">
+                                {/* Green Line (Catcheater) */}
+                                <path
+                                    d="M0,300 C50,280 100,200 200,150 C300,100 400,80 500,75 C600,72 700,70 800,70"
+                                    fill="none"
+                                    stroke="#059669"
+                                    strokeWidth="3"
+                                    vectorEffect="non-scaling-stroke"
+                                />
+                                {/* Red Dotted Line (Control - Crash) */}
+                                <path
+                                    d="M0,300 C50,290 100,220 200,200 C250,190 300,300 350,350 C400,380 500,380 800,380"
+                                    fill="none"
+                                    stroke="#ef4444"
+                                    strokeWidth="2"
+                                    strokeDasharray="5,5"
+                                    vectorEffect="non-scaling-stroke"
+                                />
+                            </svg>
+
+                            {/* Labels */}
+                            <div className="absolute top-10 right-4 text-xs font-bold text-emerald-600 bg-white/80 px-2 py-1 rounded shadow-sm border border-emerald-100">
+                                Catcheater Line (Stable)
+                            </div>
+                            <div className="absolute bottom-10 right-1/2 text-xs font-bold text-red-500 bg-white/80 px-2 py-1 rounded shadow-sm border border-red-100">
+                                Unprotected Control (Crash)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Panel: Batch List & Alerts */}
+                <div className="space-y-6">
+                    {/* Active Batches */}
+                    <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+                        <h3 className="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Active Batches</h3>
+                        <div className="space-y-3">
+                            <BatchRow id="B-1024" strain="E. coli BL21" status="Running" time="34h" />
+                            <BatchRow id="B-1025" strain="P. pastoris" status="Running" time="12h" />
+                            <BatchRow id="B-1026" strain="C. glutamicum" status="Initializing" time="0h" />
+                        </div>
+                    </div>
+
+                    {/* System Parameters */}
+                    <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+                        <h3 className="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Parameters (Avg)</h3>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                                <div className="text-xs text-slate-500 mb-1">Temperature</div>
+                                <div className="font-mono font-bold text-slate-800">37.0°C</div>
+                            </div>
+                            <div className="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                                <div className="text-xs text-slate-500 mb-1">Stir Rate</div>
+                                <div className="font-mono font-bold text-slate-800">250 RPM</div>
+                            </div>
+                            <div className="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                                <div className="text-xs text-slate-500 mb-1">pH</div>
+                                <div className="font-mono font-bold text-slate-800">7.02</div>
+                            </div>
+                            <div className="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                                <div className="text-xs text-slate-500 mb-1">Dissolved O2</div>
+                                <div className="font-mono font-bold text-slate-800">30%</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    );
+}
 
-            {/* Footer Stats - Minimalist */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div className="p-3 bg-slate-50 text-slate-400 rounded-xl">
-                        <Activity size={24} />
-                    </div>
-                    <div>
-                        <div className="text-sm text-slate-400 font-medium uppercase tracking-wider">Genetic Drift</div>
-                        <div className="text-2xl font-bold text-slate-800">0.00%</div>
-                    </div>
-                </div>
-                <div className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
-                        <ShieldCheck size={24} />
-                    </div>
-                    <div>
-                        <div className="text-sm text-slate-400 font-medium uppercase tracking-wider">Enforcer Status</div>
-                        <div className="text-2xl font-bold text-slate-800">Standby</div>
-                    </div>
-                </div>
-                <div className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">
-                        <Moon size={24} />
-                    </div>
-                    <div>
-                        <div className="text-sm text-slate-400 font-medium uppercase tracking-wider">Est. Sleep Time</div>
-                        <div className="text-2xl font-bold text-slate-800">8h 00m</div>
-                    </div>
-                </div>
+// Subcomponents for cleaner code
+function MetricCard({ label, value, trend, icon, trendColor }: any) {
+    return (
+        <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex justify-between items-start mb-2">
+                <span className="text-sm font-medium text-slate-500">{label}</span>
+                <span className="text-slate-400">{icon}</span>
+            </div>
+            <div className="text-2xl font-bold text-slate-900 mb-1">{value}</div>
+            <div className={`text-xs font-bold ${trendColor} flex items-center gap-1`}>
+                <ArrowUpRight size={12} />
+                {trend}
+            </div>
+        </div>
+    );
+}
+
+function BatchRow({ id, strain, status, time }: any) {
+    return (
+        <div className="flex items-center justify-between p-3 rounded-lg border border-slate-100 hover:bg-slate-50 transition-colors">
+            <div>
+                <div className="font-bold text-slate-800 text-sm">{id}</div>
+                <div className="text-xs text-slate-500">{strain}</div>
+            </div>
+            <div className="text-right">
+                <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide mb-1
+                    ${status === 'Running' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}
+                 `}>
+                    {status}
+                </span>
+                <div className="text-xs font-mono text-slate-600">{time} elapsed</div>
             </div>
         </div>
     );
