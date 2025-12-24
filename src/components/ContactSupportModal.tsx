@@ -88,6 +88,36 @@ export default function ContactSupportModal({ isOpen, onClose }: ContactSupportM
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4">
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-xs font-bold text-foreground mb-1.5 uppercase tracking-wide">Full Name</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        placeholder="Dr. Jane Doe"
+                                        className="w-full p-3 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-bold text-foreground mb-1.5 uppercase tracking-wide">Email</label>
+                                    <input
+                                        type="email"
+                                        required
+                                        placeholder="jane@university.edu"
+                                        className="w-full p-3 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label className="block text-xs font-bold text-foreground mb-1.5 uppercase tracking-wide">Institution / Company</label>
+                                <input
+                                    type="text"
+                                    placeholder="e.g. Stanford University, Genentech"
+                                    className="w-full p-3 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm"
+                                />
+                            </div>
+
                             <div>
                                 <label className="block text-xs font-bold text-foreground mb-1.5 uppercase tracking-wide">Topic</label>
                                 <select className="w-full p-3 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm">
