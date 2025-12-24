@@ -19,7 +19,7 @@ export default function Mechanisms() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
                     {/* LEFT: Scrolling Text Steps */}
-                    <div className="space-y-24 py-12 pb-64">
+                    <div className="space-y-24 py-12 pb-24">
                         {/* Intro */}
                         <Step
                             idx={0}
@@ -107,7 +107,7 @@ function Step({ idx, title, subtitle, text, icon, onActive }: any) {
         <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ margin: "-20% 0px -20% 0px" }} // Trigger when element is near center
+            viewport={{ margin: "-10% 0px -10% 0px" }} // Trigger earlier (10% from edges)
             onViewportEnter={() => onActive(idx)}
             transition={{ duration: 0.5 }}
             className="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm max-w-lg"
