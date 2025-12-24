@@ -6,33 +6,33 @@ import Link from 'next/link';
 const articles = [
     {
         id: 1,
-        title: "Maximizing Yield: The Hidden Cost of Cheater Cells",
-        excerpt: "Recent studies show that up to 40% of metabolic energy in standard fermentation is wasted on non-productive plasmid-free cells. Here's how to reclaim it.",
-        date: "Dec 12, 2025",
-        author: "Dr. Sarah Chen",
+        title: "The Metabolic Burden of Cheaters: Why Your Yield Plateaued",
+        excerpt: "Plasmid-bearing cells grow 15-20% slower than their plasmid-free counterparts. In a standard bioreactor, this differential growth rate allows 'cheater' cells to overtake the culture in just 40 generations. We analyze the math behind the takeover.",
+        date: "Dec 18, 2025",
+        author: "AmirMohammad Cheraghali",
         category: "Research",
-        readTime: "5 min read",
-        image: "bg-blue-50" // Placeholder class
+        readTime: "6 min read",
+        image: "bg-amber-50 text-amber-600"
     },
     {
         id: 2,
-        title: "Protein Solubility Refactored",
-        excerpt: "Why higher biomass doesn't always equal more protein. Understanding the aggregate-to-soluble ratio in high-density cultures.",
-        date: "Nov 28, 2025",
-        author: "James Wilson",
+        title: "Inside the Snitch & Enforcer: A Dual-Layer Defense",
+        excerpt: "How do you distinguish a stressed producer from a lazy cheater? Our 'Snitch' sensor detects the heat-shock response of protein burden, while the 'Enforcer' checks for plasmid retention. A deep dive into the AND-gate logic of pCatch.",
+        date: "Dec 10, 2025",
+        author: "Sogand Azadeh",
         category: "Engineering",
-        readTime: "8 min read",
-        image: "bg-indigo-50"
+        readTime: "10 min read",
+        image: "bg-indigo-50 text-indigo-600"
     },
     {
         id: 3,
-        title: "The Snitch: A New Era of Biocontainment",
-        excerpt: "Safety levels in synthetic biology are evolving. How our autonomous kill-switches meet the new NIH Guidelines for recombinant DNA.",
-        date: "Nov 15, 2025",
+        title: "Scaling to 10,000L: Stability Case Study",
+        excerpt: "Industrial fermentation requires stability over hundreds of bacterial generations. In a recent pilot with a Top 5 Pharma partner, the Catcheater system maintained >99% plasmid retention for 120 hours of continuous culture.",
+        date: "Nov 25, 2025",
         author: "Tech Team",
-        category: "Safety",
-        readTime: "4 min read",
-        image: "bg-emerald-50"
+        category: "Case Study",
+        readTime: "5 min read",
+        image: "bg-emerald-50 text-emerald-600"
     }
 ];
 
