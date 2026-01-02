@@ -430,7 +430,7 @@ export default function Survey() {
 
                     <h2 className="text-2xl font-bold font-display text-white mb-2">Analysis Complete</h2>
                     <p className="text-slate-500 mb-8 text-sm">
-                        Calculated from your {Object.keys(answers).length} data points. Your full report has been queued for email delivery.
+                        We have analyzed your responses. Your personalized risk profile is below.
                     </p>
 
                     <div className="bg-indigo-950/20 border border-indigo-500/20 rounded-2xl p-6 mb-6">
