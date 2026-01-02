@@ -255,7 +255,7 @@ export default function Survey() {
                             <div className="form-group">
                                 <label className="block text-sm font-bold text-foreground mb-3">What is the estimated financial impact of a single failed batch?</label>
                                 <div className="space-y-2">
-                                    {['< $1,000', '$1,000 - $10,000', '$10,000 - $50,000', '> $50,000'].map((opt) => (
+                                    {['< €1,000', '€1,000 - €10,000', '€10,000 - €50,000', '> €50,000'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:border-primary hover:bg-blue-50 cursor-pointer transition-all group">
                                             <input type="radio" name="impact" value={opt} className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
                                             <span className="text-slate-600 font-medium group-hover:text-primary">{opt}</span>
