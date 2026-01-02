@@ -15,6 +15,32 @@ export default function Survey() {
         const formData = new FormData(e.target as HTMLFormElement);
         const data = Object.fromEntries(formData.entries());
 
+        // List of required field names
+        const requiredFields = [
+            'sector', 'organism', 'product', 'scale',
+            'frequency', 'retention', 'impact',
+            'method', 'suicide_gene',
+            'interest', 'pricing', 'concern'
+        ];
+
+        // Find the first missing field
+        const firstMissing = requiredFields.find(field => !data[field]);
+
+        if (firstMissing) {
+            // Find the element in the DOM
+            const element = document.querySelector(`input[name="${firstMissing}"]`);
+            if (element) {
+                // Scroll to the container (form-group) for better context, or the element itself
+                const container = element.closest('.form-group') || element;
+                container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Optional: visual cue could be added here, but scrolling is the primary request
+                // alert('Please answer this question to proceed.'); 
+            }
+            setIsSubmitting(false);
+            return;
+        }
+
         try {
             const response = await fetch('/api/survey', {
                 method: 'POST',
