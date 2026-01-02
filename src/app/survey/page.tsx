@@ -347,7 +347,7 @@ export default function Survey() {
                         </h2>
 
                         {/* Options */}
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             {activeQuestion.type === 'radio' && activeQuestion.options?.map((opt, idx) => {
                                 const isSelected = answers[activeQuestion.id] === opt;
                                 return (
@@ -357,23 +357,23 @@ export default function Survey() {
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: idx * 0.1 }}
                                         onClick={() => handleSelect(opt)}
-                                        className={`w-full text-left p-6 rounded-2xl border-2 transition-all duration-200 group relative overflow-hidden
+                                        className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 group relative overflow-hidden
                                             ${isSelected
-                                                ? 'border-indigo-500 bg-indigo-500/10 shadow-[0_0_30px_rgba(99,102,241,0.15)]'
+                                                ? 'border-indigo-500 bg-indigo-500/10 shadow-[0_0_20px_rgba(99,102,241,0.1)]'
                                                 : 'border-slate-800 bg-slate-900/50 hover:border-slate-600 hover:bg-slate-800'
                                             }`}
                                     >
-                                        <div className="flex items-center gap-4 relative z-10">
-                                            <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors
+                                        <div className="flex items-center gap-3 relative z-10">
+                                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors
                                                 ${isSelected ? 'border-indigo-500 bg-indigo-500 text-white' : 'border-slate-600 text-transparent group-hover:border-slate-500'}`}>
-                                                {isSelected && <div className="w-2.5 h-2.5 bg-white rounded-full shadow-sm" />}
+                                                {isSelected && <div className="w-1.5 h-1.5 bg-white rounded-full shadow-sm" />}
                                             </div>
-                                            <span className={`text-lg md:text-xl font-medium ${isSelected ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
+                                            <span className={`text-base md:text-lg font-medium ${isSelected ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
                                                 {opt}
                                             </span>
                                         </div>
                                         {/* Key Hint (Optional desktop enhancement) */}
-                                        <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-mono text-slate-700 opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">
+                                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-mono text-slate-700 opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">
                                             Key {idx + 1}
                                         </span>
                                     </motion.button>
@@ -419,7 +419,7 @@ export default function Survey() {
                         disabled={!answers[activeQuestion.id]}
                         className="flex items-center gap-2 px-8 py-4 bg-white text-slate-950 font-bold rounded-xl hover:bg-indigo-50 transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-xl hover:scale-105 active:scale-95"
                     >
-                        OK <ChevronRight size={20} />
+                        Next <ChevronRight size={20} />
                     </button>
                 )}
 
