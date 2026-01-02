@@ -401,9 +401,9 @@ export default function Survey() {
                         </div>
                     </div>
 
-                    <h2 className="text-2xl font-bold font-display text-white mb-2">Detailed Report Generated</h2>
+                    <h2 className="text-2xl font-bold font-display text-white mb-2">Analysis Complete</h2>
                     <p className="text-slate-500 mb-8 text-sm">
-                        Calculated from your {Object.keys(answers).length} data points.
+                        Calculated from your {Object.keys(answers).length} data points. Your full report has been queued for email delivery.
                     </p>
 
                     <div className="bg-indigo-950/20 border border-indigo-500/20 rounded-2xl p-6 mb-6">
@@ -429,7 +429,7 @@ export default function Survey() {
                                 }}
                                 className="flex items-center justify-center gap-2 py-3 px-4 bg-[#0077b5] text-white text-sm font-bold rounded-xl hover:bg-[#006396] transition-colors"
                             >
-                                <Share2 size={16} /> Share Result
+                                <Share2 size={16} /> Share on LinkedIn
                             </button>
                             <Link href="/" className="inline-flex items-center justify-center w-full py-3 px-4 bg-slate-800 text-white font-bold text-sm rounded-xl hover:bg-slate-700 transition-all border border-slate-700">
                                 Return Home
