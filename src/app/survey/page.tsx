@@ -105,19 +105,24 @@ export default function Survey() {
                                             url: 'https://catcheater.bio/survey'
                                         };
 
-                                        // Try Native Share (Mobile)
-                                        if (navigator.share) {
+                                        // 1. Detect Mobile Device (Simplified Check)
+                                        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+                                        // 2. Try Native Share (ONLY on Mobile)
+                                        if (isMobile && navigator.share) {
                                             try {
                                                 await navigator.share(shareData);
                                                 return;
                                             } catch (err) {
-                                                // Ignore abort errors
+                                                // User aborted or failed
                                             }
                                         }
 
-                                        // Fallback to LinkedIn Web Share (Desktop)
-                                        const linkedinUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
-                                        window.open(linkedinUrl, '_blank');
+                                        // 3. Desktop Fallback -> LinkedIn specific URL
+                                        // Note: LinkedIn pre-filling 'text' in the share URL is officially deprecated but still works via 'shareActive' or 'summary' params on some endpoints.
+                                        // We combine text + url into the text field for best chance of visibility.
+                                        const startScriptLink = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
+                                        window.open(startScriptLink, '_blank', 'noopener,noreferrer');
                                     }}
                                     className="flex items-center justify-center gap-2 py-2.5 px-4 bg-[#0077b5] text-white text-sm font-bold rounded-lg hover:bg-[#006396] transition-colors"
                                 >
