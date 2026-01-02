@@ -7,10 +7,12 @@ import Link from 'next/link';
 export default function Survey() {
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setErrorMessage(null); // Clear previous errors
 
         const formData = new FormData(e.target as HTMLFormElement);
         const data = Object.fromEntries(formData.entries());
@@ -35,7 +37,10 @@ export default function Survey() {
                 container.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
                 // Notify user they missed a question
-                alert('Please complete all questions before submitting.');
+                setErrorMessage('Please complete all questions before submitting.');
+
+                // Auto-clear after 4 seconds
+                setTimeout(() => setErrorMessage(null), 4000);
             }
             setIsSubmitting(false);
             return;
@@ -132,6 +137,18 @@ export default function Survey() {
                         Help us quantify the impact of genetic instability in industrial fermentation.
                     </p>
                 </div>
+
+                {/* Error Toast */}
+                {errorMessage && (
+                    <div className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:w-auto z-50 animate-in fade-in slide-in-from-bottom-4 duration-300">
+                        <div className="bg-red-500 text-white px-6 py-4 rounded-xl shadow-xl flex items-center gap-3 md:min-w-[320px] justify-center">
+                            <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center shrink-0">
+                                <span className="font-bold text-sm">!</span>
+                            </div>
+                            <p className="font-bold text-sm">{errorMessage}</p>
+                        </div>
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit} className="space-y-8">
 
