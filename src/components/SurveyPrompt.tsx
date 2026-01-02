@@ -41,7 +41,7 @@ export default function SurveyPrompt() {
                     initial={{ opacity: 0, y: 50, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                    className="fixed bottom-6 right-6 z-50 max-w-sm w-full md:w-auto"
+                    className="fixed bottom-6 left-4 right-4 md:left-auto md:right-6 z-50 w-auto md:w-auto max-w-sm mx-auto"
                 >
                     <div className="bg-white rounded-2xl shadow-2xl p-5 border border-indigo-100 relative overflow-hidden">
                         {/* Decorative bling */}
