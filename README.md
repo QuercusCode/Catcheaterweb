@@ -2,7 +2,7 @@
 
 **The first tag-less quality control system for industrial fermentation.**
 
-![Catcheater Banner](public/readme-header.png)
+![Catcheater Banner](public/readme-header-v2.png)
 
 ## Overview
 
