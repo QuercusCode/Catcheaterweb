@@ -98,31 +98,18 @@ export default function Survey() {
                             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Help us reach more scientists</p>
                             <div className="grid grid-cols-2 gap-3">
                                 <button
-                                    onClick={async () => {
+                                    onClick={() => {
                                         const shareData = {
-                                            title: 'Catcheater Research Survey',
                                             text: 'Join me in helping Catcheater quantify the impact of genetic instability in bioproduction. Take the 2-minute survey here: 🧬 #Biotech #SynBio #Fermentation',
                                             url: 'https://catcheater.bio/survey'
                                         };
 
-                                        // 1. Detect Mobile Device (Simplified Check)
-                                        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-                                        // 2. Try Native Share (ONLY on Mobile)
-                                        if (isMobile && navigator.share) {
-                                            try {
-                                                await navigator.share(shareData);
-                                                return;
-                                            } catch (err) {
-                                                // User aborted or failed
-                                            }
-                                        }
-
-                                        // 3. Desktop Fallback -> LinkedIn specific URL
-                                        // Note: LinkedIn pre-filling 'text' in the share URL is officially deprecated but still works via 'shareActive' or 'summary' params on some endpoints.
-                                        // We combine text + url into the text field for best chance of visibility.
-                                        const startScriptLink = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
-                                        window.open(startScriptLink, '_blank', 'noopener,noreferrer');
+                                        // USE SIMPLE, ROBUST WEB LINK FOR EVERYONE
+                                        // Navigator.share often drops text when passing to LinkedIn app.
+                                        // Async handling often triggers popup blockers on mobile.
+                                        // This direct link is the most reliable way to ensure text + URL are both present.
+                                        const linkedinUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
+                                        window.open(linkedinUrl, '_blank', 'noopener,noreferrer');
                                     }}
                                     className="flex items-center justify-center gap-2 py-2.5 px-4 bg-[#0077b5] text-white text-sm font-bold rounded-lg hover:bg-[#006396] transition-colors"
                                 >
