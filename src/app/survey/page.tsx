@@ -491,7 +491,7 @@ export default function Survey() {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-12 max-w-4xl mx-auto w-full relative">
+            <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-12 pb-24 md:pb-40 max-w-4xl mx-auto w-full relative">
 
                 {/* Category Label - HIDE for welcome screen */}
                 {activeQuestion.type !== 'intro' && (
