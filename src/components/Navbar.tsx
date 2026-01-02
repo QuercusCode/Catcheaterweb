@@ -180,6 +180,9 @@ export default function Navbar() {
                         <Link href="/dashboard" className="w-full bg-slate-100 text-foreground px-4 py-2 rounded-lg text-sm font-bold text-center">
                             Dashboard
                         </Link>
+                        <Link href="/survey" className="w-full bg-indigo-50 text-indigo-700 border border-indigo-100 px-4 py-2 rounded-lg text-sm font-bold text-center">
+                            Join Research
+                        </Link>
                     </motion.div>
                 )}
             </div>
