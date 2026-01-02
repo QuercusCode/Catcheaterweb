@@ -62,15 +62,9 @@ export default function SciencePage() {
                     </div>
 
                     {/* Visual Placeholder for Cheater Graph/Animation */}
-                    <div className="relative aspect-square bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden flex items-center justify-center group">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-red-900/10 via-transparent to-transparent opacity-50" />
-                        {/* Simplified Representation */}
-                        <div className="text-center p-8">
-                            <div className="inline-block p-4 bg-red-500/10 rounded-full mb-4 group-hover:bg-red-500/20 transition-colors">
-                                <Activity size={48} className="text-red-500" />
-                            </div>
-                            <p className="text-slate-500 font-mono text-sm">Visual: Growth Curve Crash</p>
-                        </div>
+                    {/* Visual: Cheater Graph */}
+                    <div className="w-full h-[400px]">
+                        <GrowthCrashChart />
                     </div>
                 </div>
             </section>
