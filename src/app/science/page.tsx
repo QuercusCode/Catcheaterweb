@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Microscope, AlertTriangle, Activity } from "lucide-react";
 import MechanismViewer from "@/components/sections/MechanismViewer";
 import ComparisonTable from "@/components/sections/ComparisonTable";
+import GrowthCrashChart from "@/components/sections/GrowthCrashChart";
 
 export default function SciencePage() {
     return (
