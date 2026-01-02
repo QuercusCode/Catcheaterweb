@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { ChevronRight, ChevronLeft, CheckCircle2, Share2, Copy, Send, TriangleAlert, ShieldCheck, Zap } from 'lucide-react';
+import { ChevronRight, ChevronLeft, CheckCircle2, Share2, Copy, Send, TriangleAlert, ShieldCheck, Zap, ArrowRight, Activity } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Configuration ---
 
-type QuestionType = 'radio' | 'email';
+type QuestionType = 'radio' | 'email' | 'intro';
 
 interface Question {
     id: string;
@@ -17,6 +17,16 @@ interface Question {
 }
 
 const QUESTIONS: Question[] = [
+    // Welcome Screen
+    {
+        id: 'intro',
+        category: 'Welcome',
+        question: 'Plasmid Stability Assessment',
+        type: 'intro',
+        options: ['Start Assessment'],
+        placeholder: 'Take this 2-minute assessment to quantify your plasmid instability risk and unlock a personalized optimization report.'
+    },
+
     // Section 1: Facility Profile
     {
         id: 'sector',
@@ -120,6 +130,7 @@ const QUESTIONS: Question[] = [
 // --- Theming ---
 
 const SECTION_THEMES: Record<string, 'blue' | 'rose' | 'cyan' | 'violet'> = {
+    'Welcome': 'blue',
     'Facility Profile': 'blue',
     'Stability & Pain Points': 'rose',
     'Current Methods': 'cyan',
@@ -273,7 +284,11 @@ export default function Survey() {
 
     const activeQuestion = QUESTIONS[currentStep];
     const isLastQuestion = currentStep === QUESTIONS.length - 1;
-    const progress = ((currentStep + 1) / QUESTIONS.length) * 100;
+
+    // Progress is now 0 for Intro (Step 0) and builds up from Step 1 onwards
+    const progress = activeQuestion.type === 'intro'
+        ? 5
+        : ((currentStep) / (QUESTIONS.length - 1)) * 100;
 
     // Theme computation
     const currentThemeName = SECTION_THEMES[activeQuestion.category];
@@ -295,7 +310,8 @@ export default function Survey() {
     };
 
     const handleNext = () => {
-        if (!answers[activeQuestion.id] && activeQuestion.type !== 'email') return; // Enforce required fields (except optional email)
+        // Enforce required fields (except optional email and intro button)
+        if (activeQuestion.type !== 'intro' && !answers[activeQuestion.id] && activeQuestion.type !== 'email') return;
 
         if (isLastQuestion) {
             submitForm();
@@ -341,8 +357,10 @@ export default function Survey() {
     // Keyboard navigation (Enter to next)
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === 'Enter' && activeQuestion.type === 'email') {
-                handleNext();
+            if (e.key === 'Enter') {
+                if (activeQuestion.type === 'email' || activeQuestion.type === 'intro') {
+                    handleNext();
+                }
             }
         };
         window.addEventListener('keydown', handleKeyDown);
@@ -473,15 +491,17 @@ export default function Survey() {
             {/* Main Content Area */}
             <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-12 max-w-4xl mx-auto w-full relative">
 
-                {/* Category Label */}
-                <motion.div
-                    key={activeQuestion.category}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`absolute top-12 md:top-20 text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-500 ${theme.text}`}
-                >
-                    {activeQuestion.category} · Q{currentStep + 1}/{QUESTIONS.length}
-                </motion.div>
+                {/* Category Label - HIDE for welcome screen */}
+                {activeQuestion.type !== 'intro' && (
+                    <motion.div
+                        key={activeQuestion.category}
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className={`absolute top-12 md:top-20 text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-500 ${theme.text}`}
+                    >
+                        {activeQuestion.category} · Q{currentStep}/{QUESTIONS.length - 1}
+                    </motion.div>
+                )}
 
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                     <motion.div
@@ -491,12 +511,23 @@ export default function Survey() {
                         initial="enter"
                         animate="center"
                         exit="exit"
-                        className="w-full max-w-2xl"
+                        className="w-full max-w-2xl text-center md:text-left"
                     >
-                        {/* Question */}
-                        <h2 className="text-3xl md:text-5xl font-display font-bold mb-12 sm:mb-16 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
+                        {/* Question (or Title for Intro) */}
+                        <h2 className={`font-display font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400
+                            ${activeQuestion.type === 'intro' ? 'text-4xl md:text-6xl mb-6' : 'text-3xl md:text-5xl mb-12 sm:mb-16'}`}>
                             {activeQuestion.question}
                         </h2>
+
+                        {/* Special Description for Intro */}
+                        {activeQuestion.type === 'intro' && (
+                            <div className="mb-12">
+                                <h3 className="text-xl text-blue-400 font-bold mb-4">Is Your Strain Stability Costing You?</h3>
+                                <p className="text-lg text-slate-400 leading-relaxed max-w-xl mx-auto md:mx-0">
+                                    {activeQuestion.placeholder}
+                                </p>
+                            </div>
+                        )}
 
                         {/* Options */}
                         <div className="space-y-3">
@@ -549,6 +580,16 @@ export default function Survey() {
                                     </p>
                                 </div>
                             )}
+
+                            {/* Start Button for Intro */}
+                            {activeQuestion.type === 'intro' && (
+                                <button
+                                    onClick={handleNext}
+                                    className="group inline-flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg rounded-full shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] transition-all transform hover:scale-105"
+                                >
+                                    Start Assessment <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                                </button>
+                            )}
                         </div>
                     </motion.div>
                 </AnimatePresence>
@@ -556,16 +597,18 @@ export default function Survey() {
 
             {/* Navigation Bar */}
             <div className="fixed bottom-0 left-0 w-full p-6 md:p-8 flex justify-between items-center z-40 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent">
+
+                {/* Hide Back button on Intro screen */}
                 <button
                     onClick={handlePrev}
                     disabled={currentStep === 0}
                     className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-colors
-                        ${currentStep === 0 ? 'text-slate-700 cursor-not-allowed' : `${theme.buttonSecondary}`}`}
+                        ${currentStep === 0 ? 'opacity-0 pointer-events-none' : `${theme.buttonSecondary}`}`}
                 >
                     <ChevronLeft size={20} /> Back
                 </button>
 
-                {!isLastQuestion && (
+                {!isLastQuestion && activeQuestion.type !== 'intro' && (
                     <button
                         onClick={handleNext}
                         disabled={!answers[activeQuestion.id]}
