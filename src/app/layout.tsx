@@ -25,11 +25,6 @@ export const metadata: Metadata = {
   description: 'Tag-less Quality-Control System for E. coli. Eliminate cheaters, maximize yield with our autonomous genetic circuit.',
   metadataBase: new URL('https://catcheater.com'),
   keywords: ['biotech', 'protein production', 'fermentation', 'plasmid stability', 'synthetic biology', 'quality control', 'E. coli'],
-  icons: {
-    icon: '/logo-final.png',
-    shortcut: '/logo-final.png',
-    apple: '/logo-final.png',
-  },
   openGraph: {
     title: 'Catcheater',
     description: 'Eliminate cheaters. Maximize yield. The first tag-less quality control system for industrial fermentation.',
