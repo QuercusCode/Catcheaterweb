@@ -493,13 +493,12 @@ export default function Survey() {
             {/* Main Content Area */}
             <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-12 pb-24 md:pb-40 max-w-4xl mx-auto w-full relative">
 
-                {/* Category Label - HIDE for welcome screen */}
                 {activeQuestion.type !== 'intro' && (
                     <motion.div
                         key={activeQuestion.category}
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className={`absolute top-12 md:top-20 text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-500 ${theme.text}`}
+                        className={`w-full max-w-2xl text-center md:text-left mb-8 text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-500 ${theme.text}`}
                     >
                         {activeQuestion.category} · Q{currentStep}/{QUESTIONS.length - 1}
                     </motion.div>
@@ -515,9 +514,8 @@ export default function Survey() {
                         exit="exit"
                         className="w-full max-w-2xl text-center md:text-left"
                     >
-                        {/* Question (or Title for Intro) */}
                         <h2 className={`font-display font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400
-                            ${activeQuestion.type === 'intro' ? 'text-4xl md:text-6xl mb-6' : 'text-3xl md:text-5xl mb-12 sm:mb-16'}`}>
+                            ${activeQuestion.type === 'intro' ? 'text-4xl md:text-6xl mb-6' : 'text-2xl md:text-4xl lg:text-5xl mb-12 sm:mb-16'}`}>
                             {activeQuestion.question}
                         </h2>
 
