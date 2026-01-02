@@ -29,9 +29,9 @@ export default function AnimatedOrderButton({ onClick }: AnimatedOrderButtonProp
             className={`${styles.order} ${isAnimating ? styles.animate : ''}`}
             onClick={handleClick}
         >
-            <span className={styles.default}>Complete Order</span>
+            <span className={styles.default}>Join Waitlist</span>
             <span className={styles.success}>
-                Order Placed
+                Request Sent
                 <svg viewBox="0 0 12 10">
                     <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
                 </svg>
