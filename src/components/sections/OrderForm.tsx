@@ -81,7 +81,7 @@ export default function OrderForm() {
     const isContactAdded = touched.contact; // Simplified trigger for demo
 
     // Mappings for Summary
-    const strainLabel = formData.strain === 'bl21de3-catcheater' ? 'BL21 + QC' : 'BL21 Basic';
+    const strainLabel = formData.strain === 'bl21de3-catcheater' ? 'Catcheater + QC' : 'Catcheater Basic';
     const promoterLabel = {
         't7': 'T7',
         'lac': 'lac',
