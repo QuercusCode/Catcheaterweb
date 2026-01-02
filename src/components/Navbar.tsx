@@ -146,7 +146,14 @@ export default function Navbar() {
                         >
                             Join Research
                         </a>
-                        <Link href="/dashboard" className="bg-primary text-white border border-primary hover:bg-blue-700 px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-lg shadow-primary/20">
+
+                        {/* Mobile: Join Research (Primary) */}
+                        <Link href="/survey" className="md:hidden bg-primary text-white border border-primary hover:bg-blue-700 px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-lg shadow-primary/20">
+                            Join Research
+                        </Link>
+
+                        {/* Desktop: Console */}
+                        <Link href="/dashboard" className="hidden md:block bg-primary text-white border border-primary hover:bg-blue-700 px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-lg shadow-primary/20">
                             Console
                         </Link>
 
