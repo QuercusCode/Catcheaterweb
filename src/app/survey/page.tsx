@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, CheckCircle2, Share2, Copy, Send, TriangleAlert, ShieldCheck, Zap, ArrowRight, Activity } from 'lucide-react';
 import Link from 'next/link';
