@@ -1,7 +1,5 @@
-'use client';
-
 import { useState, useEffect } from 'react';
-import { ChevronRight, ChevronLeft, CheckCircle2, Share2, Copy, Send, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
+import { ChevronRight, ChevronLeft, CheckCircle2, Share2, Copy, Send, TriangleAlert, ShieldCheck, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -225,7 +223,7 @@ const getRiskReport = (answers: Record<string, string>): RiskReport => {
             score,
             color: 'text-red-500',
             bg: 'bg-red-500/10 border-red-500/50',
-            icon: AlertTriangle,
+            icon: TriangleAlert,
             title: 'Critical Risk Detected',
             message: 'Your facility is likely losing significant value to instability. Immediate intervention is recommended.'
         };
@@ -235,7 +233,7 @@ const getRiskReport = (answers: Record<string, string>): RiskReport => {
             score,
             color: 'text-orange-500',
             bg: 'bg-orange-500/10 border-orange-500/50',
-            icon: AlertTriangle,
+            icon: TriangleAlert,
             title: 'High Risk Detected',
             message: 'Stability issues are limiting your production potential. Optimization is highly recommended.'
         };
