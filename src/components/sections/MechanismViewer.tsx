@@ -95,7 +95,11 @@ export default function MechanismViewer() {
                         transition={{ type: 'spring', bounce: 0.5 }}
                         className={`w-32 h-32 rounded-3xl mx-auto mb-6 flex items-center justify-center ${steps[activeStep].bg} shadow-2xl`}
                     >
-                        <steps[activeStep].icon size={64} className="text-white" />
+                        {/* Assign to variable to satisfy JSX requirement */}
+                        {(() => {
+                            const StepIcon = steps[activeStep].icon;
+                            return <StepIcon size={64} className="text-white" />;
+                        })()}
                     </motion.div>
 
                     <motion.div

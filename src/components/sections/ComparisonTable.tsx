@@ -35,7 +35,7 @@ export default function ComparisonTable() {
                         <td className="p-6 text-emerald-400 flex items-center gap-2 font-bold">
                             <Check size={16} className="text-emerald-500" /> Yes (Real-time)
                         </td>
-                        <td className="p-6 font-bold text-white shadow-[0_0_20px_rgba(99,102,241,0.2)]">> 99%</td>
+                        <td className="p-6 font-bold text-white shadow-[0_0_20px_rgba(99,102,241,0.2)]">&gt; 99%</td>
                     </tr>
                 </tbody>
             </table>
