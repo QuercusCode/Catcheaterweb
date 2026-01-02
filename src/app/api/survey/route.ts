@@ -22,15 +22,19 @@ export async function POST(request: Request) {
 
         try {
             const apiKey = process.env.RESEND_API_KEY;
+
             if (!apiKey) {
-                console.warn('RESEND_API_KEY is not set. Skipping email dispatch.');
-                return NextResponse.json({ success: true, message: 'Survey received (Email skipped - No API Key)' });
+                console.error('RESEND_API_KEY is missing');
+                return NextResponse.json(
+                    { success: false, message: 'Server configuration error (Missing API Key)' },
+                    { status: 500 }
+                );
             }
 
             const resend = new Resend(apiKey);
-            const data = await resend.emails.send({
-                from: 'Catcheater Survey <onboarding@resend.dev>', // Default Resend testing domain
-                to: 'amir.mcheraghali81@gmail.com', // SENDING TO USER'S EMAIL
+            const { data, error } = await resend.emails.send({
+                from: 'Catcheater Survey <onboarding@resend.dev>',
+                to: 'amir.mcheraghali81@gmail.com',
                 subject: 'New Market Survey Submission',
                 html: `
                     <h1>New Survey Response</h1>
@@ -41,14 +45,25 @@ export async function POST(request: Request) {
                     </ul>
                 `,
             });
-            console.log('Email sent successfully:', data);
-        } catch (emailError) {
-            console.error('Failed to send email:', emailError);
-            // We don't want to fail the request if just the email fails, but we should log it.
-            // In production, we might want to return a warning.
-        }
 
-        return NextResponse.json({ success: true, message: 'Survey received' });
+            if (error) {
+                console.error('Resend API Error:', error);
+                return NextResponse.json(
+                    { success: false, message: 'Failed to send email', error },
+                    { status: 500 }
+                );
+            }
+
+            console.log('Email sent successfully:', data);
+            return NextResponse.json({ success: true, message: 'Survey received' });
+
+        } catch (emailError) {
+            console.error('Failed to execute email sending:', emailError);
+            return NextResponse.json(
+                { success: false, message: 'Failed to send email' },
+                { status: 500 }
+            );
+        }
     } catch (error) {
         console.error('Error processing survey:', error);
         return NextResponse.json(
