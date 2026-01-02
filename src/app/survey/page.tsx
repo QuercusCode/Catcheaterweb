@@ -287,13 +287,18 @@ export default function Survey() {
     const activeQuestion = QUESTIONS[currentStep];
     const isLastQuestion = currentStep === QUESTIONS.length - 1;
 
+    // Defensive guard: If state becomes invalid, reset or return null to prevent crash
+    if (!activeQuestion) {
+        return null;
+    }
+
     // Progress is now 0 for Intro (Step 0) and builds up from Step 1 onwards
     const progress = activeQuestion.type === 'intro'
         ? 5
         : ((currentStep) / (QUESTIONS.length - 1)) * 100;
 
     // Theme computation
-    const currentThemeName = SECTION_THEMES[activeQuestion.category];
+    const currentThemeName = SECTION_THEMES[activeQuestion.category] || 'blue'; // Fallback
     const theme = THEME_STYLES[currentThemeName];
 
     // --- Actions ---
@@ -319,7 +324,11 @@ export default function Survey() {
             submitForm();
         } else {
             setDirection(1);
-            setCurrentStep(prev => prev + 1);
+            setCurrentStep(prev => {
+                // Bounds check to prevent race conditions (e.g. double click or auto-advance collision)
+                if (prev >= QUESTIONS.length - 1) return prev;
+                return prev + 1;
+            });
         }
     };
 
