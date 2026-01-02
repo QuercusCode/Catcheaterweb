@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Zap, ShieldCheck, Dna } from 'lucide-react';
+import { Zap, ShieldCheck, Dna, CheckCircle2, XCircle } from 'lucide-react';
 
 export default function MechanismViewer() {
     const [activeStep, setActiveStep] = useState(0);
@@ -38,107 +38,103 @@ export default function MechanismViewer() {
     ];
 
     return (
-        <div className="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-12 relative items-start">
+        <div className="w-full max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
-            {/* LEFT: Scrollable Text Stream */}
-            <div className="relative z-10 py-24">
+            {/* LEFT: Controls / Explanation */}
+            <div className="space-y-6">
                 {steps.map((step, index) => (
-                    <motion.div
+                    <motion.button
                         key={step.id}
-                        initial={{ opacity: 0.2 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ margin: "-40% 0px -40% 0px", once: false }}
-                        onViewportEnter={() => setActiveStep(index)}
-                        className="min-h-[80vh] flex flex-col justify-center p-8 transition-all"
+                        onClick={() => setActiveStep(index)}
+                        className={`w-full text-left p-6 rounded-2xl border-2 transition-all duration-300 relative overflow-hidden group
+                            ${activeStep === index
+                                ? 'border-indigo-500 bg-indigo-950/20 shadow-[0_0_20px_rgba(99,102,241,0.2)]'
+                                : 'border-slate-800 bg-slate-900/40 hover:bg-slate-800 hover:border-slate-700'
+                            }`}
                     >
-                        <div className={`text-sm font-bold uppercase tracking-widest mb-4 ${step.color}`}>
-                            Step 0{index + 1}
+                        <div className="flex items-start gap-4 relative z-10">
+                            <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 border 
+                                ${activeStep === index ? `${step.bg} text-white border-transparent` : 'bg-slate-800 border-slate-700 text-slate-500'}`}>
+                                <span className="font-mono font-bold">{index + 1}</span>
+                            </div>
+                            <div>
+                                <h3 className={`text-lg font-bold mb-1 ${activeStep === index ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'}`}>
+                                    {step.title}
+                                </h3>
+                                <p className={`text-sm leading-relaxed ${activeStep === index ? 'text-indigo-200' : 'text-slate-500'}`}>
+                                    {step.description}
+                                </p>
+                            </div>
                         </div>
-                        <h3 className="text-3xl md:text-4xl font-display font-bold mb-6 text-white">
-                            {step.title}
-                        </h3>
-                        <p className="text-xl text-slate-400 leading-relaxed mb-8">
-                            {step.description}
-                        </p>
-                        <div className={`w-12 h-1 rounded-full ${activeStep === index ? step.bg : 'bg-slate-800'} transition-colors duration-500`} />
-                    </motion.div>
+                    </motion.button>
                 ))}
             </div>
 
-            {/* RIGHT: Sticky Visual Simulation */}
-            <div className="sticky top-32 h-[calc(100vh-8rem)] flex items-center justify-center">
-                <div className="relative w-full aspect-square max-w-[500px] bg-slate-950 rounded-full border border-slate-800 p-8 flex items-center justify-center overflow-hidden shadow-2xl">
-                    {/* Cell Boundary */}
+            {/* RIGHT: Visual Simulation */}
+            <div className="relative aspect-square bg-slate-950 rounded-full border border-slate-800 p-8 flex items-center justify-center overflow-hidden">
+                {/* Cell Boundary */}
+                <motion.div
+                    animate={{
+                        borderColor: activeStep === 2 ? '#f43f5e' : '#6366f1',
+                        boxShadow: activeStep === 1
+                            ? '0 0 50px rgba(16, 185, 129, 0.2)'
+                            : activeStep === 2
+                                ? '0 0 50px rgba(244, 63, 94, 0.2)'
+                                : '0 0 50px rgba(99, 102, 241, 0.1)'
+                    }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-8 rounded-full border-4 border-dashed opacity-50"
+                />
+
+                {/* Central Kernel */}
+                <div className="relative z-10 text-center">
                     <motion.div
-                        animate={{
-                            borderColor: activeStep === 2 ? '#f43f5e' : '#6366f1',
-                            boxShadow: activeStep === 1
-                                ? '0 0 50px rgba(16, 185, 129, 0.2)'
-                                : activeStep === 2
-                                    ? '0 0 50px rgba(244, 63, 94, 0.2)'
-                                    : '0 0 50px rgba(99, 102, 241, 0.1)'
-                        }}
-                        transition={{ duration: 0.5 }}
-                        className="absolute inset-8 rounded-full border-4 border-dashed opacity-50"
-                    />
+                        key={activeStep}
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ type: 'spring', bounce: 0.5 }}
+                        className={`w-32 h-32 rounded-3xl mx-auto mb-6 flex items-center justify-center ${steps[activeStep].bg} shadow-2xl`}
+                    >
+                        {/* Assign to variable to satisfy JSX requirement */}
+                        {(() => {
+                            const StepIcon = steps[activeStep].icon;
+                            return <StepIcon size={64} className="text-white" />;
+                        })()}
+                    </motion.div>
 
-                    {/* Central Kernel */}
-                    <div className="relative z-10 text-center">
-                        <motion.div
-                            key={activeStep}
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ type: 'spring', bounce: 0.5 }}
-                            className={`w-32 h-32 rounded-3xl mx-auto mb-6 flex items-center justify-center ${steps[activeStep].bg} shadow-2xl relative`}
-                        >
-                            {/* Assign to variable to satisfy JSX requirement */}
-                            {(() => {
-                                const StepIcon = steps[activeStep].icon;
-                                return <StepIcon size={64} className="text-white" />;
-                            })()}
-
-                            {/* Pulse Effect */}
-                            <motion.div
-                                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0] }}
-                                transition={{ duration: 2, repeat: Infinity }}
-                                className="absolute inset-0 rounded-3xl bg-white/30"
-                            />
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            key={`text-${activeStep}`}
-                        >
-                            <h4 className={`text-2xl font-bold font-display uppercase tracking-widest ${steps[activeStep].color}`}>
-                                {steps[activeStep].status}
-                            </h4>
-                            <p className="text-xs text-slate-500 font-mono mt-2 uppercase">System Status: Active</p>
-                        </motion.div>
-                    </div>
-
-                    {/* Floating Particles */}
-                    <div className="absolute inset-0 pointer-events-none">
-                        {[...Array(6)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                animate={{
-                                    x: [0, Math.random() * 100 - 50],
-                                    y: [0, Math.random() * 100 - 50],
-                                    scale: [1, 0],
-                                    opacity: [0.5, 0]
-                                }}
-                                transition={{
-                                    duration: 2 + Math.random(),
-                                    repeat: Infinity,
-                                    repeatType: "reverse"
-                                }}
-                                className={`absolute top-1/2 left-1/2 w-2 h-2 rounded-full ${steps[activeStep].bg}`}
-                            />
-                        ))}
-                    </div>
-
+                    <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        key={`text-${activeStep}`}
+                    >
+                        <h4 className={`text-2xl font-bold font-display uppercase tracking-widest ${steps[activeStep].color}`}>
+                            {steps[activeStep].status}
+                        </h4>
+                        <p className="text-xs text-slate-500 font-mono mt-2 uppercase">System Status: Active</p>
+                    </motion.div>
                 </div>
+
+                {/* Floating Particles */}
+                <div className="absolute inset-0 pointer-events-none">
+                    {[...Array(6)].map((_, i) => (
+                        <motion.div
+                            key={i}
+                            animate={{
+                                x: [0, Math.random() * 100 - 50],
+                                y: [0, Math.random() * 100 - 50],
+                                scale: [1, 0],
+                                opacity: [0.5, 0]
+                            }}
+                            transition={{
+                                duration: 2 + Math.random(),
+                                repeat: Infinity,
+                                repeatType: "reverse"
+                            }}
+                            className={`absolute top-1/2 left-1/2 w-2 h-2 rounded-full ${steps[activeStep].bg}`}
+                        />
+                    ))}
+                </div>
+
             </div>
         </div>
     );
