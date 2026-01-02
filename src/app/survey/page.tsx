@@ -448,7 +448,7 @@ export default function Survey() {
                             <button
                                 onClick={() => {
                                     const shareData = {
-                                        text: `I just received a ${riskReport.level} Risk Score on my bioproduction facility analysis. Check your plasmid stability here:`,
+                                        text: `I just assessed my facility's plasmid stability risk. Critical insights for optimizing fermentation yields. Quantify your risk here:`,
                                         url: 'https://catcheater.bio/survey'
                                     };
                                     const linkedinUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
