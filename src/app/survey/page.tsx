@@ -8,6 +8,7 @@ export default function Survey() {
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [notification, setNotification] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -118,7 +119,8 @@ export default function Survey() {
                                 <button
                                     onClick={() => {
                                         navigator.clipboard.writeText('https://catcheater.bio/survey');
-                                        alert('Link copied to clipboard!');
+                                        setNotification('Link copied to clipboard!');
+                                        setTimeout(() => setNotification(null), 3000);
                                     }}
                                     className="flex items-center justify-center gap-2 py-2.5 px-4 bg-slate-100 text-slate-700 text-sm font-bold rounded-lg hover:bg-slate-200 transition-colors"
                                 >
@@ -156,6 +158,18 @@ export default function Survey() {
                                 <span className="font-bold text-sm">!</span>
                             </div>
                             <p className="font-bold text-sm">{errorMessage}</p>
+                        </div>
+                    </div>
+                )}
+
+                {/* Success Notification Toast */}
+                {notification && (
+                    <div className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:w-auto z-50 animate-in fade-in slide-in-from-bottom-4 duration-300">
+                        <div className="bg-indigo-600 text-white px-6 py-4 rounded-xl shadow-xl flex items-center gap-3 md:min-w-[320px] justify-center">
+                            <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center shrink-0">
+                                <CheckCircle2 size={16} />
+                            </div>
+                            <p className="font-bold text-sm">{notification}</p>
                         </div>
                     </div>
                 )}
