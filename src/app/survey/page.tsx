@@ -97,14 +97,32 @@ export default function Survey() {
                         <div className="pt-6 border-t border-slate-100">
                             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Help us reach more scientists</p>
                             <div className="grid grid-cols-2 gap-3">
-                                <a
-                                    href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent("Join me in helping Catcheater quantify the impact of genetic instability in bioproduction. Take the 2-minute survey here: https://catcheater.bio/survey 🧬 #Biotech #SynBio #Fermentation")}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                <button
+                                    onClick={async () => {
+                                        const shareData = {
+                                            title: 'Catcheater Research Survey',
+                                            text: 'Join me in helping Catcheater quantify the impact of genetic instability in bioproduction. Take the 2-minute survey here: 🧬 #Biotech #SynBio #Fermentation',
+                                            url: 'https://catcheater.bio/survey'
+                                        };
+
+                                        // Try Native Share (Mobile)
+                                        if (navigator.share) {
+                                            try {
+                                                await navigator.share(shareData);
+                                                return;
+                                            } catch (err) {
+                                                // Ignore abort errors
+                                            }
+                                        }
+
+                                        // Fallback to LinkedIn Web Share (Desktop)
+                                        const linkedinUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
+                                        window.open(linkedinUrl, '_blank');
+                                    }}
                                     className="flex items-center justify-center gap-2 py-2.5 px-4 bg-[#0077b5] text-white text-sm font-bold rounded-lg hover:bg-[#006396] transition-colors"
                                 >
-                                    <Share2 size={16} /> Share
-                                </a>
+                                    <Share2 size={16} /> Share on LinkedIn
+                                </button>
                                 <button
                                     onClick={() => {
                                         navigator.clipboard.writeText('https://catcheater.bio/survey');
