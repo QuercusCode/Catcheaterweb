@@ -34,8 +34,8 @@ export default function Survey() {
                 const container = element.closest('.form-group') || element;
                 container.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                // Optional: visual cue could be added here, but scrolling is the primary request
-                // alert('Please answer this question to proceed.'); 
+                // Notify user they missed a question
+                alert('Please complete all questions before submitting.');
             }
             setIsSubmitting(false);
             return;
