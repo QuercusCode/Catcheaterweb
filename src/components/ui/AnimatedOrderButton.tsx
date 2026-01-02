@@ -15,12 +15,11 @@ export default function AnimatedOrderButton({ onClick }: AnimatedOrderButtonProp
         if (!isAnimating) {
             setIsAnimating(true);
 
-            // Execute parent Logic
-            if (onClick) onClick();
-
             // Reset animation after 10s (match CSS)
             setTimeout(() => {
                 setIsAnimating(false);
+                // Execute parent Logic (open modal) after animation
+                if (onClick) onClick();
             }, 10000);
         }
     };
