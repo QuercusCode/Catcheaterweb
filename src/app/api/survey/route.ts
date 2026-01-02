@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialized inside handler to avoid build errors if key is missing
 
 export async function POST(request: Request) {
     try {
@@ -21,6 +21,13 @@ export async function POST(request: Request) {
             .join('');
 
         try {
+            const apiKey = process.env.RESEND_API_KEY;
+            if (!apiKey) {
+                console.warn('RESEND_API_KEY is not set. Skipping email dispatch.');
+                return NextResponse.json({ success: true, message: 'Survey received (Email skipped - No API Key)' });
+            }
+
+            const resend = new Resend(apiKey);
             const data = await resend.emails.send({
                 from: 'Catcheater Survey <onboarding@resend.dev>', // Default Resend testing domain
                 to: 'amir.mcheraghali81@gmail.com', // SENDING TO USER'S EMAIL
