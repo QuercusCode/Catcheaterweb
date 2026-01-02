@@ -375,17 +375,11 @@ export default function OrderForm() {
                     </div>
 
                     <button
-                        onClick={handleSubmit}
-                        disabled={isSubmitting || isSuccess || !isStrainSelected}
-                        className="w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        onClick={() => alert("We're currently in the testing phase. Please join our waitlist to be notified when kits are available for order!")}
+                        disabled={false} // Intentionally clickable to trigger the alert, or better yet, styling it as active but showing alert
+                        className="w-full py-4 bg-slate-400 text-white font-bold rounded-xl shadow-none cursor-not-allowed flex items-center justify-center gap-2 hover:bg-slate-500 transition-colors"
                     >
-                        {isSubmitting ? (
-                            <span className="flex items-center gap-2">Processing...</span>
-                        ) : isSuccess ? (
-                            <span className="flex items-center gap-2"><CheckCircle2 /> Request Sent</span>
-                        ) : (
-                            'Submit Order Request'
-                        )}
+                        Product Coming Soon
                     </button>
                     {isSuccess && (
                         <div className="bg-emerald-50 text-emerald-700 p-4 rounded-xl text-sm border border-emerald-200 mt-4 animate-in fade-in slide-in-from-top-2">
