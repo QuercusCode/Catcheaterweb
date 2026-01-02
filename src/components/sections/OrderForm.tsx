@@ -4,6 +4,7 @@ import { ShoppingCart, Check, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { useState, ChangeEvent } from 'react';
 import PlasmidViewer from '../PlasmidViewer';
 import WaitlistModal from '../WaitlistModal';
+import AnimatedOrderButton from '../ui/AnimatedOrderButton';
 
 export default function OrderForm() {
     // State for all form fields
@@ -376,13 +377,11 @@ export default function OrderForm() {
                         <br />You will receive a quote within 24h.
                     </div>
 
-                    <button
-                        onClick={() => setIsWaitlistOpen(true)}
-                        disabled={false} // Intentionally clickable to trigger the modal
-                        className="w-full py-4 bg-slate-400 text-white font-bold rounded-xl shadow-none cursor-not-allowed flex items-center justify-center gap-2 hover:bg-slate-500 transition-colors"
-                    >
-                        Product Coming Soon
-                    </button>
+
+                    <div className="w-full flex justify-center">
+                        <AnimatedOrderButton onClick={() => setIsWaitlistOpen(true)} />
+                    </div>
+
 
                     <WaitlistModal
                         isOpen={isWaitlistOpen}
