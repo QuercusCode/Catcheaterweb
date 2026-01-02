@@ -8,9 +8,17 @@ interface WaitlistModalProps {
     onClose: () => void;
 }
 
+import { createPortal } from 'react-dom';
+
 export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
 
     // Prevent body scroll when modal is open
     useEffect(() => {
@@ -25,7 +33,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
         };
     }, [isOpen]);
 
-    if (!isOpen) return null;
+    if (!isOpen || !mounted) return null;
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -37,8 +45,8 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
         }, 1500);
     };
 
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+    return createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-slate-900/80 backdrop-blur-md transition-opacity"
@@ -113,6 +121,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }
