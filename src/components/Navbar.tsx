@@ -138,6 +138,12 @@ export default function Navbar() {
                         <Link href="/dashboard/kits" className="hidden sm:block text-xs font-bold text-muted-foreground hover:text-primary transition-colors">
                             My Kits
                         </Link>
+                        <a
+                            href="/survey"
+                            className="hidden md:flex items-center gap-2 px-4 py-1.5 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-full hover:bg-indigo-100 transition-colors border border-indigo-100"
+                        >
+                            Join Research
+                        </a>
                         <Link href="/dashboard" className="bg-primary text-white border border-primary hover:bg-blue-700 px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-lg shadow-primary/20">
                             Console
                         </Link>

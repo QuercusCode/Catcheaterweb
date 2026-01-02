@@ -8,6 +8,9 @@ import SystemInfo from '@/components/sections/SystemInfo';
 import Mechanisms from '@/components/sections/Mechanisms';
 import ContactSupportModal from '@/components/ContactSupportModal';
 import WaitlistModal from '@/components/WaitlistModal';
+import Roadmap from '@/components/sections/Roadmap';
+import Team from '@/components/sections/Team';
+import SurveyPrompt from '@/components/SurveyPrompt';
 
 export default function Home() {
   const [isSupportOpen, setIsSupportOpen] = useState(false);
@@ -100,6 +103,10 @@ export default function Home() {
 
         </div>
       </div>
+
+      <Roadmap />
+      <Team />
+      <SurveyPrompt />
     </main>
   );
 }

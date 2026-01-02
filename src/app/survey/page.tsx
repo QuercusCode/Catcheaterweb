@@ -1,22 +1,42 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowRight, CheckCircle2, ChevronRight, Send } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronRight, Send, Share2, Copy } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Survey() {
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate API call
-        setTimeout(() => {
+
+        const formData = new FormData(e.target as HTMLFormElement);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch('/api/survey', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                setSubmitted(true);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                console.error('Submission failed');
+                alert('Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Network error. Please try again.');
+        } finally {
             setIsSubmitting(false);
-            setSubmitted(true);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 1500);
+        }
     };
 
     if (submitted) {
@@ -27,12 +47,45 @@ export default function Survey() {
                         <CheckCircle2 size={32} />
                     </div>
                     <h2 className="text-2xl font-bold font-display text-foreground mb-4">Thank You!</h2>
-                    <p className="text-muted-foreground mb-8">
+                    <p className="text-muted-foreground mb-6">
                         Your insights are incredibly valuable. We will process your feedback and send the Research Report to your inbox soon.
                     </p>
-                    <Link href="/" className="inline-flex items-center justify-center w-full py-3 px-6 bg-primary text-white font-bold rounded-xl hover:bg-blue-700 transition-colors">
-                        Return Home
-                    </Link>
+
+                    <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-4 mb-8">
+                        <p className="text-xs font-bold text-emerald-800 uppercase tracking-wide mb-1">Your 50% Discount Code</p>
+                        <div className="flex items-center justify-center gap-3">
+                            <code className="text-2xl font-mono font-bold text-emerald-700 tracking-wider">PIONEER-50</code>
+                        </div>
+                    </div>
+
+                    <div className="space-y-3">
+                        <Link href="/" className="inline-flex items-center justify-center w-full py-3 px-6 bg-primary text-white font-bold rounded-xl hover:bg-blue-700 transition-colors">
+                            Return Home
+                        </Link>
+
+                        <div className="pt-6 border-t border-slate-100">
+                            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Help us reach more scientists</p>
+                            <div className="grid grid-cols-2 gap-3">
+                                <a
+                                    href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent("Join me in helping Catcheater quantify the impact of genetic instability in bioproduction. Take the 2-minute survey here: https://catcheater.bio/survey 🧬 #Biotech #SynBio #Fermentation")}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 py-2.5 px-4 bg-[#0077b5] text-white text-sm font-bold rounded-lg hover:bg-[#006396] transition-colors"
+                                >
+                                    <Share2 size={16} /> Share
+                                </a>
+                                <button
+                                    onClick={() => {
+                                        navigator.clipboard.writeText('https://catcheater.bio/survey');
+                                        alert('Link copied to clipboard!');
+                                    }}
+                                    className="flex items-center justify-center gap-2 py-2.5 px-4 bg-slate-100 text-slate-700 text-sm font-bold rounded-lg hover:bg-slate-200 transition-colors"
+                                >
+                                    <Copy size={16} /> Copy Link
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -69,7 +122,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['Academic / University research', 'Early-stage Startup (Pre-Seed/Seed)', 'Growth-stage Biotech (Series A+)', 'Large Pharma / CDMO'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:border-primary hover:bg-blue-50 cursor-pointer transition-all group">
-                                            <input type="radio" name="sector" className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
+                                            <input type="radio" name="sector" value={opt} className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
                                             <span className="text-slate-600 font-medium group-hover:text-primary">{opt}</span>
                                         </label>
                                     ))}
@@ -81,7 +134,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['E. coli (BL21 / B-strains)', 'E. coli (K-12 derivatives)', 'Yeast (S. cerevisiae / P. pastoris)', 'Mammalian (CHO / HEK)', 'Other'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:border-primary hover:bg-blue-50 cursor-pointer transition-all group">
-                                            <input type="radio" name="organism" className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
+                                            <input type="radio" name="organism" value={opt} className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
                                             <span className="text-slate-600 font-medium group-hover:text-primary">{opt}</span>
                                         </label>
                                     ))}
@@ -93,7 +146,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['Recombinant Proteins / Enzymes', 'Therapeutics (Antibodies, Cytokines)', 'Plasmid DNA (Gene Therapy, Vaccines)', 'Small Molecules / Metabolites'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:border-primary hover:bg-blue-50 cursor-pointer transition-all group">
-                                            <input type="radio" name="product" className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
+                                            <input type="radio" name="product" value={opt} className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
                                             <span className="text-slate-600 font-medium group-hover:text-primary">{opt}</span>
                                         </label>
                                     ))}
@@ -105,7 +158,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['Lab Scale (< 5L)', 'Pilot Scale (5L - 500L)', 'Industrial Scale (> 500L)'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:border-primary hover:bg-blue-50 cursor-pointer transition-all group">
-                                            <input type="radio" name="scale" className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
+                                            <input type="radio" name="scale" value={opt} className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
                                             <span className="text-slate-600 font-medium group-hover:text-primary">{opt}</span>
                                         </label>
                                     ))}
@@ -127,7 +180,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['Never (Stable)', 'Rarely (< 10% of runs)', 'Frequently (10-50% of runs)', 'Critical Bottleneck (> 50% of runs)'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:border-primary hover:bg-blue-50 cursor-pointer transition-all group">
-                                            <input type="radio" name="frequency" className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
+                                            <input type="radio" name="frequency" value={opt} className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
                                             <span className="text-slate-600 font-medium group-hover:text-primary">{opt}</span>
                                         </label>
                                     ))}
@@ -139,7 +192,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['Excellent (> 90%)', 'Moderate (70% - 90%)', 'Poor (< 70% or highly variable)', 'Unknown / We do not measure this'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:border-primary hover:bg-blue-50 cursor-pointer transition-all group">
-                                            <input type="radio" name="retention" className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
+                                            <input type="radio" name="retention" value={opt} className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
                                             <span className="text-slate-600 font-medium group-hover:text-primary">{opt}</span>
                                         </label>
                                     ))}
@@ -151,7 +204,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['< $1,000', '$1,000 - $10,000', '$10,000 - $50,000', '> $50,000'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:border-primary hover:bg-blue-50 cursor-pointer transition-all group">
-                                            <input type="radio" name="impact" className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
+                                            <input type="radio" name="impact" value={opt} className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
                                             <span className="text-slate-600 font-medium group-hover:text-primary">{opt}</span>
                                         </label>
                                     ))}
@@ -173,7 +226,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['We rely solely on antibiotics (e.g., Amp/Kan)', 'We employ auxotrophic selection markers', 'We over-inoculate to compensate', 'We do not have an effective solution'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:border-primary hover:bg-blue-50 cursor-pointer transition-all group">
-                                            <input type="radio" name="method" className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
+                                            <input type="radio" name="method" value={opt} className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
                                             <span className="text-slate-600 font-medium group-hover:text-primary">{opt}</span>
                                         </label>
                                     ))}
@@ -185,7 +238,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['Yes, yield and purity are the priority.', 'Maybe, but safety/compliance is a concern.', 'No, our regulatory constraints forbid it.'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:border-primary hover:bg-blue-50 cursor-pointer transition-all group">
-                                            <input type="radio" name="suicide_gene" className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
+                                            <input type="radio" name="suicide_gene" value={opt} className="peer w-4 h-4 text-primary border-slate-300 focus:ring-primary" />
                                             <span className="text-slate-600 font-medium group-hover:text-primary">{opt}</span>
                                         </label>
                                     ))}
@@ -210,7 +263,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['Not interested (Current methods work)', 'Curious (I would read a whitepaper/case study)', 'Interested (I would buy an Evaluation Kit)', 'Very Interested (We have an active need for this)'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all group">
-                                            <input type="radio" name="interest" className="peer w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500" />
+                                            <input type="radio" name="interest" value={opt} className="peer w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500" />
                                             <span className="text-slate-700 font-medium group-hover:text-indigo-700">{opt}</span>
                                         </label>
                                     ))}
@@ -222,7 +275,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['One-time Engineering Fee (per strain)', 'Annual Subscription (License per strain)', 'Value Share (Royalty % per batch)'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all group">
-                                            <input type="radio" name="pricing" className="peer w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500" />
+                                            <input type="radio" name="pricing" value={opt} className="peer w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500" />
                                             <span className="text-slate-700 font-medium group-hover:text-indigo-700">{opt}</span>
                                         </label>
                                     ))}
@@ -234,7 +287,7 @@ export default function Survey() {
                                 <div className="space-y-2">
                                     {['Regulatory Compliance', 'Metabolic Burden on the cell', 'Implementation Difficulty', 'Cost'].map((opt) => (
                                         <label key={opt} className="flex items-center gap-3 p-3 rounded-lg bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all group">
-                                            <input type="radio" name="concern" className="peer w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500" />
+                                            <input type="radio" name="concern" value={opt} className="peer w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500" />
                                             <span className="text-slate-700 font-medium group-hover:text-indigo-700">{opt}</span>
                                         </label>
                                     ))}

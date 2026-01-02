@@ -73,7 +73,7 @@ export default function ResearchKit() {
                         <TestTube2 className="text-primary" size={32} /> Available Kits & Modules
                     </h2>
                     <p className="text-muted-foreground text-base mt-2 max-w-2xl">
-                        Select high-performance components to build your custom strain. All kits are compatible with BL21(DE3).
+                        Select high-performance components to build your custom strain.
                     </p>
                 </div>
             </div>

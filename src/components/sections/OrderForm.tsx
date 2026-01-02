@@ -14,7 +14,6 @@ export default function OrderForm() {
         promoter: 't7',
         resistance: 'amp',
         origin: 'puc',
-        antidote: 'dual',
         customExplanation: '',
         usage: '', // research application
         quantity: 1
@@ -126,8 +125,8 @@ export default function OrderForm() {
                                     onChange={handleInputChange}
                                     className="w-full bg-background border border-border rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
                                 >
-                                    <option value="bl21de3-catcheater">BL21(DE3) + Catcheater System (Recommended)</option>
-                                    <option value="bl21de3-basic">BL21(DE3) Basic (No QC System)</option>
+                                    <option value="bl21de3-catcheater">Catcheater strain (with sfGFP and Toxin)</option>
+                                    <option value="bl21de3-basic">Catcheater strain (control)</option>
                                 </select>
                                 <p className="text-xs text-muted mt-1">
                                     Includes genomic integration of stress sensors, logic gates, and the latch mechanism.
@@ -236,14 +235,6 @@ export default function OrderForm() {
                                         <option value="p15a">p15A (Medium copy)</option>
                                         <option value="cole1">ColE1 (High copy)</option>
                                         <option value="custom">Custom</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-semibold text-foreground mb-2">Antidote Module</label>
-                                    <select name="antidote" value={formData.antidote} onChange={handleInputChange} className="w-full bg-background border border-border rounded-lg p-3 text-sm outline-none">
-                                        <option value="dual">Dual-Plug (Repressor + sRNA)</option>
-                                        <option value="repressor">Repressor Only</option>
-                                        <option value="srna">sRNA Only</option>
                                     </select>
                                 </div>
                             </div>

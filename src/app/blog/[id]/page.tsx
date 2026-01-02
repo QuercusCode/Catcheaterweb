@@ -3,15 +3,17 @@
 import { useParams } from 'next/navigation';
 import { Calendar, User, Tag, ArrowLeft, Clock } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Full Article Data
 const blogPosts = {
     1: {
         title: "The Metabolic Burden of Cheaters: Why Your Yield Plateaued",
         subtitle: "The math behind plasmid instability and the 40-generation crash.",
-        date: "Dec 18, 2025",
-        author: "AmirMohammad Cheraghali",
-        role: "Synthetic Biology & AI Lead",
+        date: "Jan 1, 2026",
+        author: "Amir M. Cheraghali",
+        role: "Co-Founder & Lead Scientist",
+        authorImage: "/Image-Amir.png",
         category: "Research",
         readTime: "8 min read",
         image: "bg-amber-50 text-amber-600",
@@ -64,9 +66,10 @@ const blogPosts = {
     2: {
         title: "Inside the Snitch & Enforcer: A Dual-Layer Defense",
         subtitle: "Decoupling detection from execution in genetic circuit design.",
-        date: "Dec 10, 2025",
+        date: "Jan 1, 2026",
         author: "Sogand Azadeh",
-        role: "Genetics & Epigenetics Lead",
+        role: "Co-Founder & Research Lead",
+        authorImage: "/Image-Sogand.png",
         category: "Engineering",
         readTime: "12 min read",
         image: "bg-indigo-50 text-indigo-600",
@@ -124,9 +127,10 @@ const blogPosts = {
     3: {
         title: "Scaling to 10,000L: Stability Case Study",
         subtitle: "From shake flask to industrial fermenter without the performance drop.",
-        date: "Nov 25, 2025",
-        author: "Tech Team",
-        role: "Catcheater R&D",
+        date: "Jan 1, 2026",
+        author: "Sogand Azadeh",
+        role: "Co-Founder & Research Lead",
+        authorImage: "/Image-Sogand.png",
         category: "Case Study",
         readTime: "7 min read",
         image: "bg-emerald-50 text-emerald-600",
@@ -190,16 +194,17 @@ const blogPosts = {
                 There is no need to validate the removal of trace antibiotics from the final product, a key requirement for FDA approval of injectables.
                 <br/><br/>
                 Furthermore, the Catcheater system significantly reduces the bioburden of "dead" biomass. While cheaters are lysed, they convert their biomass back into soluble amino acids and nucleotides, which can be scavenged by the productive survivors. 
-                This effectively turns your worst enemy (the cheater) into feedstock for your product.
+                This effectively turns the cheater into feedstock for your product.
             </p>
         `
     },
     4: {
         title: "The 250 Generation Challenge: Why Long-Term Fermentation Fails",
         subtitle: "When evolution works against you: A technical deep dive into genetic drift.",
-        date: "Dec 22, 2025",
-        author: "Dr. Elena Vance",
-        role: "Chief Scientific Officer",
+        date: "Jan 1, 2026",
+        author: "Amir M. Cheraghali",
+        role: "Co-Founder & Lead Scientist",
+        authorImage: "/Image-Amir.png",
         category: "Deep Tech",
         readTime: "9 min read",
         image: "bg-indigo-50 text-indigo-600",
@@ -242,9 +247,10 @@ const blogPosts = {
     5: {
         title: "Bio-Manufacturing in 2030: The End of Antibiotics?",
         subtitle: "Regulatory winds are shifting. Is your process ready for an antibiotic-free future?",
-        date: "Dec 20, 2025",
-        author: "AmirMohammad Cheraghali",
-        role: "CEO & Founder",
+        date: "Jan 1, 2026",
+        author: "Amir M. Cheraghali",
+        role: "Co-Founder & Lead Scientist",
+        authorImage: "/Image-Amir.png",
         category: "Industry Outlook",
         readTime: "7 min read",
         image: "bg-amber-50 text-amber-600",
@@ -279,9 +285,10 @@ const blogPosts = {
     6: {
         title: "ROI Analysis: The Hidden Cost of Batch Failure",
         subtitle: "Why 'Good Enough' stability is costing you millions.",
-        date: "Dec 15, 2025",
-        author: "Strategy Team",
-        role: "Financial Analysis",
+        date: "Jan 1, 2026",
+        author: "Sogand Azadeh",
+        role: "Co-Founder & Research Lead",
+        authorImage: "/Image-Sogand.png",
         category: "Economics",
         readTime: "6 min read",
         image: "bg-blue-50 text-blue-600",
@@ -363,8 +370,13 @@ export default function BlogPost() {
                     </p>
 
                     <div className="flex items-center gap-4 mt-8 pt-8 border-t border-border/50">
-                        <div className="w-10 h-10 bg-white border border-border rounded-full flex items-center justify-center text-slate-400">
-                            <User size={20} />
+                        <div className="relative w-10 h-10 rounded-full overflow-hidden border border-slate-200 shrink-0">
+                            <Image
+                                src={post.authorImage}
+                                alt={post.author}
+                                fill
+                                className="object-cover"
+                            />
                         </div>
                         <div>
                             <p className="font-bold text-foreground text-sm">{post.author}</p>
