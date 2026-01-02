@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, Microscope, Dna, ShieldCheck, Zap, Activity, BookOpen, AlertTriangle } from "lucide-react";
+import { ArrowRight, Microscope, AlertTriangle, Activity } from "lucide-react";
+import MechanismViewer from "@/components/sections/MechanismViewer";
+import ComparisonTable from "@/components/sections/ComparisonTable";
 
 export default function SciencePage() {
     return (
@@ -85,39 +87,9 @@ export default function SciencePage() {
                     </p>
                 </div>
 
-                {/* MECHANISM STEPS - To be componentized later */}
-                <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 relative z-10">
-                    {[
-                        {
-                            step: "01",
-                            title: "The Sensor",
-                            desc: "A small genetic tag detects the actual translation of your target protein in real-time.",
-                            icon: Zap
-                        },
-                        {
-                            step: "02",
-                            title: "The Certificate",
-                            desc: "High production triggers the release of an unstable Anti-Toxin. This is the cell's 'Proof of Work'.",
-                            icon: ShieldCheck
-                        },
-                        {
-                            step: "03",
-                            title: "The Enforcer",
-                            desc: "A latent Toxin is always present. If production stops, the Anti-Toxin fades, and the Toxin eliminates the cheater.",
-                            icon: Dna
-                        }
-                    ].map((item, i) => (
-                        <div key={i} className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-8 rounded-3xl hover:border-indigo-500/30 transition-colors group">
-                            <div className="text-6xl font-bold text-slate-800 mb-8 font-display select-none group-hover:text-indigo-900/50 transition-colors">{item.step}</div>
-                            <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-6 text-indigo-400 group-hover:scale-110 transition-transform duration-500">
-                                <item.icon size={24} />
-                            </div>
-                            <h4 className="text-xl font-bold text-white mb-3">{item.title}</h4>
-                            <p className="text-slate-400 leading-relaxed text-sm">
-                                {item.desc}
-                            </p>
-                        </div>
-                    ))}
+                {/* MECHANISM VIEWER */}
+                <div className="max-w-6xl mx-auto relative z-10">
+                    <MechanismViewer />
                 </div>
             </section>
 
@@ -129,38 +101,7 @@ export default function SciencePage() {
                         <p className="text-slate-400">Comparing modern stabilization methods.</p>
                     </div>
 
-                    <div className="overflow-x-auto rounded-3xl border border-slate-800 bg-slate-900/30">
-                        <table className="w-full text-left text-sm text-slate-400">
-                            <thead className="bg-slate-900 text-slate-200 font-display">
-                                <tr>
-                                    <th className="p-6 font-bold">Method</th>
-                                    <th className="p-6 font-bold">Selection Target</th>
-                                    <th className="p-6 font-bold">Reacts to Mutations?</th>
-                                    <th className="p-6 font-bold">Retention Rate</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-800">
-                                <tr className="group hover:bg-slate-800/30 transition-colors">
-                                    <td className="p-6 font-medium text-white">Antibiotics (Standard)</td>
-                                    <td className="p-6">Plasmid Presence</td>
-                                    <td className="p-6 text-red-400 flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-red-500" /> No</td>
-                                    <td className="p-6">~40-70%</td>
-                                </tr>
-                                <tr className="group hover:bg-slate-800/30 transition-colors">
-                                    <td className="p-6 font-medium text-white">Auxotrophy</td>
-                                    <td className="p-6">Plasmid Presence</td>
-                                    <td className="p-6 text-red-400 flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-red-500" /> No</td>
-                                    <td className="p-6">~80%</td>
-                                </tr>
-                                <tr className="bg-indigo-950/10 hover:bg-indigo-900/20 transition-colors">
-                                    <td className="p-6 font-bold text-indigo-300">Catcheater™ System</td>
-                                    <td className="p-6 text-indigo-200">Protein Production</td>
-                                    <td className="p-6 text-emerald-400 flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500" /> Yes (Real-time)</td>
-                                    <td className="p-6 font-bold text-white">> 99%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <ComparisonTable />
                 </div>
             </section>
 
