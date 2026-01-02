@@ -30,10 +30,10 @@ export default function Home() {
           <div className="md:col-span-4 lg:col-span-3">
             <div className="sticky top-32 space-y-6">
 
-              {/* Promo Banner (Revamped) */}
+              {/* Promo Banner (Science) */}
               <div
                 className="rounded-2xl p-6 relative overflow-hidden shadow-xl group cursor-pointer transition-transform hover:scale-[1.02]"
-                onClick={() => setIsWaitlistOpen(true)}
+                onClick={() => window.location.href = '/science'}
               >
                 {/* Background with Gradient & Texture */}
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 transition-all duration-500 group-hover:scale-105" />
@@ -41,20 +41,20 @@ export default function Home() {
                 <div className="relative z-10 text-white">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="inline-block px-2 py-1 bg-indigo-500/50 border border-indigo-400/30 text-[10px] font-bold rounded text-white backdrop-blur-md uppercase tracking-wider shadow-sm">
-                      New Program
+                      Deep Dive
                     </span>
                   </div>
 
                   <h3 className="text-2xl font-bold mb-2 font-display tracking-tight text-white drop-shadow-md">
-                    Early Access
+                    How It Works
                   </h3>
 
                   <p className="mb-6 text-indigo-100/90 text-sm leading-relaxed font-medium">
-                    Secure early access to the <span className="font-bold text-white">Enforcer Module</span> and get <span className="text-purple-300 font-bold decoration-purple-400 underline decoration-2 underline-offset-2">50% off</span> your first evaluation kit.
+                    See the genetic logic behind our <span className="font-bold text-white">Translation-Coupled Certificate™</span>.
                   </p>
 
                   <button className="w-full bg-white text-indigo-900 py-3 rounded-xl font-bold text-sm shadow-lg shadow-indigo-900/20 hover:bg-indigo-50 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
-                    Join Waitlist <span className="text-lg">✨</span>
+                    View Mechanism <span className="text-lg">🧬</span>
                   </button>
                 </div>
 

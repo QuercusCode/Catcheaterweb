@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 
 const navLinks = [
     { name: 'Products', href: '/#products' },
+    { name: 'Mechanism', href: '/science' }, // Added Science/Mechanism link
     { name: 'Pricing', href: '/pricing' },
     { name: 'Docs', href: '/docs' },
     { name: 'Blog', href: '/blog' },
@@ -21,6 +22,7 @@ const searchIndex = [
     { type: 'Page', title: 'Documentation', href: '/docs', icon: HelpCircle },
     { type: 'Page', title: 'Research Blog', href: '/blog', icon: FileText },
     { type: 'Page', title: 'About Catcheater', href: '/about', icon: FileText },
+    { type: 'Page', title: 'Science Deep Dive', href: '/science', icon: FlaskConical }, // Added Search Index
     { type: 'Page', title: 'Market Survey', href: '/survey', icon: FileText },
     { type: 'Action', title: 'Console Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { type: 'Action', title: 'My Kits', href: '/dashboard/kits', icon: FlaskConical },
