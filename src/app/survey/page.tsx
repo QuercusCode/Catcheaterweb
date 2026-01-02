@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronRight, ChevronLeft, CheckCircle2, Share2, Copy, Send } from 'lucide-react';
+import { ChevronRight, ChevronLeft, CheckCircle2, Share2, Copy, Send, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -180,6 +180,89 @@ const THEME_STYLES = {
     }
 };
 
+// --- Risk Logic ---
+
+type RiskLevel = 'CRITICAL' | 'HIGH' | 'MODERATE' | 'OPTIMAL';
+
+interface RiskReport {
+    level: RiskLevel;
+    score: number;
+    color: string;
+    bg: string;
+    icon: any;
+    title: string;
+    message: string;
+}
+
+const getRiskReport = (answers: Record<string, string>): RiskReport => {
+    let score = 0;
+
+    // 1. Frequency
+    const freq = answers['frequency'];
+    if (freq?.includes('Critical')) score += 4;
+    else if (freq?.includes('Frequently')) score += 3;
+    else if (freq?.includes('Rarely')) score += 1;
+
+    // 2. Retention
+    const ret = answers['retention'];
+    if (ret?.includes('Poor')) score += 3;
+    else if (ret?.includes('Moderate')) score += 2;
+    else if (ret?.includes('Unknown')) score += 1;
+
+    // 3. Impact
+    const impact = answers['impact'];
+    if (impact?.includes('> €50,000')) score += 2;
+    else if (impact?.includes('€10,000')) score += 1;
+
+    // 4. Method
+    const method = answers['method'];
+    if (method?.includes('not have an effective solution')) score += 1;
+
+    // Determine Level
+    if (score >= 8) {
+        return {
+            level: 'CRITICAL',
+            score,
+            color: 'text-red-500',
+            bg: 'bg-red-500/10 border-red-500/50',
+            icon: AlertTriangle,
+            title: 'Critical Risk Detected',
+            message: 'Your facility is likely losing significant value to instability. Immediate intervention is recommended.'
+        };
+    } else if (score >= 5) {
+        return {
+            level: 'HIGH',
+            score,
+            color: 'text-orange-500',
+            bg: 'bg-orange-500/10 border-orange-500/50',
+            icon: AlertTriangle,
+            title: 'High Risk Detected',
+            message: 'Stability issues are limiting your production potential. Optimization is highly recommended.'
+        };
+    } else if (score >= 2) {
+        return {
+            level: 'MODERATE',
+            score,
+            color: 'text-yellow-500',
+            bg: 'bg-yellow-500/10 border-yellow-500/50',
+            icon: ShieldCheck,
+            title: 'Moderate Risk',
+            message: 'Your process is stable but could be optimized. Preventative measures can lock in your yields.'
+        };
+    } else {
+        return {
+            level: 'OPTIMAL',
+            score,
+            color: 'text-emerald-500',
+            bg: 'bg-emerald-500/10 border-emerald-500/50',
+            icon: Zap,
+            title: 'Optimal Performance',
+            message: 'You are running efficiently! Catcheater can help you maintain this edge as you scale.'
+        };
+    }
+};
+
+
 export default function Survey() {
     const [currentStep, setCurrentStep] = useState(0);
     const [direction, setDirection] = useState(0);
@@ -188,6 +271,7 @@ export default function Survey() {
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [notification, setNotification] = useState<string | null>(null);
+    const [riskReport, setRiskReport] = useState<RiskReport | null>(null);
 
     const activeQuestion = QUESTIONS[currentStep];
     const isLastQuestion = currentStep === QUESTIONS.length - 1;
@@ -232,10 +316,14 @@ export default function Survey() {
     const submitForm = async () => {
         setIsSubmitting(true);
         try {
+            // Calculate Risk BEFORE submission state update
+            const report = getRiskReport(answers);
+            setRiskReport(report);
+
             const response = await fetch('/api/survey', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(answers),
+                body: JSON.stringify({ ...answers, riskScore: report.score, riskLevel: report.level }),
             });
 
             if (response.ok) {
@@ -289,62 +377,63 @@ export default function Survey() {
 
 
     // --- Render: Success Screen ---
-    if (submitted) {
+    if (submitted && riskReport) {
         return (
             <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6 font-sans">
-                <div className="max-w-md w-full bg-slate-900 rounded-3xl shadow-2xl p-8 text-center border border-indigo-500/20">
-                    <motion.div
-                        initial={{ scale: 0, rotate: -45 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        className="w-20 h-20 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 border border-emerald-500/20"
-                    >
-                        <CheckCircle2 size={40} />
-                    </motion.div>
-                    <h2 className="text-3xl font-bold font-display text-white mb-4">Thank You!</h2>
-                    <p className="text-slate-400 mb-8 leading-relaxed">
-                        Your insights help shape the future of bioproduction. We'll send the Research Report shortly.
+                <div className="max-w-xl w-full bg-slate-900 rounded-3xl shadow-2xl p-8 text-center border border-slate-800">
+
+                    {/* RISK REPORT CARD */}
+                    <div className={`mb-8 p-6 rounded-2xl border-2 ${riskReport.bg} relative overflow-hidden`}>
+                        <div className="flex flex-col items-center">
+                            <motion.div
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ type: 'spring', stiffness: 200, damping: 10 }}
+                                className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 ${riskReport.bg} ${riskReport.color} border-2 border-current shadow-lg`}
+                            >
+                                <riskReport.icon size={32} />
+                            </motion.div>
+                            <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-1">Plasmid Instability Risk</h2>
+                            <h3 className={`text-4xl font-display font-bold ${riskReport.color} mb-4`}>{riskReport.level} EXP</h3>
+                            <p className="text-slate-300 font-medium leading-relaxed max-w-sm mx-auto">
+                                {riskReport.message}
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2 className="text-2xl font-bold font-display text-white mb-2">Detailed Report Generated</h2>
+                    <p className="text-slate-500 mb-8 text-sm">
+                        Calculated from your {Object.keys(answers).length} data points.
                     </p>
 
-                    <div className="bg-emerald-950/30 border border-emerald-500/30 rounded-2xl p-6 mb-8 relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2">Your 50% Discount Code</p>
-                        <div className="flex items-center justify-center gap-3">
-                            <code className="text-3xl font-mono font-bold text-white tracking-widest drop-shadow-sm">PIONEER-50</code>
+                    <div className="bg-indigo-950/20 border border-indigo-500/20 rounded-2xl p-6 mb-6">
+                        <p className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3">Your Research Grant</p>
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="px-6 py-2 bg-slate-950 rounded-lg border border-slate-800 font-mono text-xl font-bold text-white tracking-widest select-all">
+                                PIONEER-50
+                            </div>
+                            <p className="text-xs text-slate-500 mt-1">50% OFF Evaluation Kit</p>
                         </div>
                     </div>
 
                     <div className="space-y-3">
-                        <Link href="/" className="inline-flex items-center justify-center w-full py-3.5 px-6 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-500 transition-all shadow-lg hover:shadow-indigo-500/25">
-                            Return Home
-                        </Link>
-
-                        <div className="pt-8 mt-4 border-t border-slate-800/50">
-                            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Help us reach more scientists</p>
-                            <div className="grid grid-cols-2 gap-3">
-                                <button
-                                    onClick={() => {
-                                        const shareData = {
-                                            text: 'Join me in helping Catcheater quantify the impact of genetic instability in bioproduction. Take the 2-minute survey here: 🧬 #Biotech #SynBio #Fermentation',
-                                            url: 'https://catcheater.bio/survey'
-                                        };
-                                        const linkedinUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
-                                        window.open(linkedinUrl, '_blank', 'noopener,noreferrer');
-                                    }}
-                                    className="flex items-center justify-center gap-2 py-3 px-4 bg-[#0077b5] text-white text-sm font-bold rounded-xl hover:bg-[#006396] transition-colors"
-                                >
-                                    <Share2 size={16} /> LinkedIn
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        navigator.clipboard.writeText('https://catcheater.bio/survey');
-                                        setNotification('Link copied to clipboard!');
-                                        setTimeout(() => setNotification(null), 3000);
-                                    }}
-                                    className="flex items-center justify-center gap-2 py-3 px-4 bg-slate-800 text-slate-300 text-sm font-bold rounded-xl hover:bg-slate-700 transition-colors border border-slate-700"
-                                >
-                                    <Copy size={16} /> Copy Link
-                                </button>
-                            </div>
+                        <div className="grid grid-cols-2 gap-3">
+                            <button
+                                onClick={() => {
+                                    const shareData = {
+                                        text: `I just received a ${riskReport.level} Risk Score on my bioproduction facility analysis. Check your plasmid stability here:`,
+                                        url: 'https://catcheater.bio/survey'
+                                    };
+                                    const linkedinUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
+                                    window.open(linkedinUrl, '_blank', 'noopener,noreferrer');
+                                }}
+                                className="flex items-center justify-center gap-2 py-3 px-4 bg-[#0077b5] text-white text-sm font-bold rounded-xl hover:bg-[#006396] transition-colors"
+                            >
+                                <Share2 size={16} /> Share Result
+                            </button>
+                            <Link href="/" className="inline-flex items-center justify-center w-full py-3 px-4 bg-slate-800 text-white font-bold text-sm rounded-xl hover:bg-slate-700 transition-all border border-slate-700">
+                                Return Home
+                            </Link>
                         </div>
                     </div>
                 </div>
