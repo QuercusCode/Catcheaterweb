@@ -52,7 +52,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="fixed top-6 left-0 right-0 z-[100] px-4 md:px-6 pointer-events-none">
+        <nav className="fixed top-4 left-0 right-0 z-[100] px-4 md:px-6 pointer-events-none">
             <div className="max-w-7xl mx-auto pointer-events-auto relative">
                 <div className="glass rounded-2xl px-4 md:px-6 py-3 flex items-center justify-between shadow-xl shadow-primary/5 border border-white/50 bg-white/80 backdrop-blur-md relative z-20">
 

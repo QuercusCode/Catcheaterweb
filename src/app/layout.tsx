@@ -52,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-background text-foreground pt-40`}
+        className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-background text-foreground pt-28`}
       >
         <Navbar />
         {children}
