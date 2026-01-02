@@ -130,6 +130,18 @@ export default function Survey() {
                         </div>
                     </div>
                 </div>
+
+                {/* Success Notification Toast */}
+                {notification && (
+                    <div className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:w-auto z-50 animate-in fade-in slide-in-from-bottom-4 duration-300">
+                        <div className="bg-indigo-600 text-white px-6 py-4 rounded-xl shadow-xl flex items-center gap-3 md:min-w-[320px] justify-center">
+                            <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center shrink-0">
+                                <CheckCircle2 size={16} />
+                            </div>
+                            <p className="font-bold text-sm">{notification}</p>
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }
