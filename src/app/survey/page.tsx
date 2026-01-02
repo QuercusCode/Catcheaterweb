@@ -409,6 +409,11 @@ export default function Survey() {
             <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6 font-sans">
                 <div className="max-w-xl w-full bg-slate-900 rounded-3xl shadow-2xl p-8 text-center border border-slate-800">
 
+                    <h2 className="text-2xl font-bold font-display text-white mb-2">Analysis Complete</h2>
+                    <p className="text-slate-500 mb-8 text-sm">
+                        We have analyzed your responses. Your personalized risk profile is below.
+                    </p>
+
                     {/* RISK REPORT CARD */}
                     <div className={`mb-8 p-6 rounded-2xl border-2 ${riskReport.bg} relative overflow-hidden`}>
                         <div className="flex flex-col items-center">
@@ -427,11 +432,6 @@ export default function Survey() {
                             </p>
                         </div>
                     </div>
-
-                    <h2 className="text-2xl font-bold font-display text-white mb-2">Analysis Complete</h2>
-                    <p className="text-slate-500 mb-8 text-sm">
-                        We have analyzed your responses. Your personalized risk profile is below.
-                    </p>
 
                     <div className="bg-indigo-950/20 border border-indigo-500/20 rounded-2xl p-6 mb-6">
                         <p className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3">Your Research Grant</p>
