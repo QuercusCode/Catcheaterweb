@@ -119,6 +119,67 @@ const QUESTIONS: Question[] = [
     }
 ];
 
+// --- Theming ---
+
+const SECTION_THEMES: Record<string, 'blue' | 'rose' | 'cyan' | 'violet'> = {
+    'Facility Profile': 'blue',
+    'Stability & Pain Points': 'rose',
+    'Current Methods': 'cyan',
+    'The Catcheater Solution': 'violet',
+    'Final Step': 'violet'
+};
+
+const THEME_STYLES = {
+    blue: {
+        text: 'text-blue-400',
+        bg: 'bg-blue-600',
+        border: 'border-blue-500',
+        bgSoft: 'bg-blue-500/10',
+        shadow: 'shadow-[0_0_20px_rgba(59,130,246,0.2)]',
+        caret: 'caret-blue-500',
+        progress: 'bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]',
+        button: 'bg-blue-600 hover:bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]',
+        buttonSecondary: 'text-blue-400 hover:text-blue-300 hover:bg-slate-900',
+        ring: 'focus:border-blue-500'
+    },
+    rose: {
+        text: 'text-rose-400',
+        bg: 'bg-rose-600',
+        border: 'border-rose-500',
+        bgSoft: 'bg-rose-500/10',
+        shadow: 'shadow-[0_0_20px_rgba(244,63,94,0.2)]',
+        caret: 'caret-rose-500',
+        progress: 'bg-rose-500 shadow-[0_0_15px_rgba(244,63,94,0.5)]',
+        button: 'bg-rose-600 hover:bg-rose-500 shadow-[0_0_20px_rgba(244,63,94,0.4)] hover:shadow-[0_0_30px_rgba(244,63,94,0.6)]',
+        buttonSecondary: 'text-rose-400 hover:text-rose-300 hover:bg-slate-900',
+        ring: 'focus:border-rose-500'
+    },
+    cyan: {
+        text: 'text-cyan-400',
+        bg: 'bg-cyan-600',
+        border: 'border-cyan-500',
+        bgSoft: 'bg-cyan-500/10',
+        shadow: 'shadow-[0_0_20px_rgba(34,211,238,0.2)]',
+        caret: 'caret-cyan-500',
+        progress: 'bg-cyan-500 shadow-[0_0_15px_rgba(34,211,238,0.5)]',
+        button: 'bg-cyan-600 hover:bg-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.4)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)]',
+        buttonSecondary: 'text-cyan-400 hover:text-cyan-300 hover:bg-slate-900',
+        ring: 'focus:border-cyan-500'
+    },
+    violet: {
+        text: 'text-violet-400',
+        bg: 'bg-violet-600',
+        border: 'border-violet-500',
+        bgSoft: 'bg-violet-500/10',
+        shadow: 'shadow-[0_0_20px_rgba(139,92,246,0.2)]',
+        caret: 'caret-violet-500',
+        progress: 'bg-violet-500 shadow-[0_0_15px_rgba(139,92,246,0.5)]',
+        button: 'bg-violet-600 hover:bg-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)]',
+        buttonSecondary: 'text-violet-400 hover:text-violet-300 hover:bg-slate-900',
+        ring: 'focus:border-violet-500'
+    }
+};
+
 export default function Survey() {
     const [currentStep, setCurrentStep] = useState(0);
     const [direction, setDirection] = useState(0);
@@ -131,6 +192,10 @@ export default function Survey() {
     const activeQuestion = QUESTIONS[currentStep];
     const isLastQuestion = currentStep === QUESTIONS.length - 1;
     const progress = ((currentStep + 1) / QUESTIONS.length) * 100;
+
+    // Theme computation
+    const currentThemeName = SECTION_THEMES[activeQuestion.category];
+    const theme = THEME_STYLES[currentThemeName];
 
     // --- Actions ---
 
@@ -307,11 +372,11 @@ export default function Survey() {
 
     // --- Render: Survey Flow ---
     return (
-        <div className="min-h-screen bg-slate-950 font-sans text-slate-100 flex flex-col overflow-hidden selection:bg-indigo-500/30">
+        <div className={`min-h-screen bg-slate-950 font-sans text-slate-100 flex flex-col overflow-hidden selection:text-white selection:${theme.bg}`}>
             {/* Progress Bar */}
             <div className="fixed top-0 left-0 w-full h-1.5 bg-slate-900 z-50">
                 <motion.div
-                    className="h-full bg-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.5)]"
+                    className={`h-full ${theme.progress} transition-all duration-700`}
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -326,7 +391,7 @@ export default function Survey() {
                     key={activeQuestion.category}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute top-12 md:top-20 text-indigo-400 text-xs font-bold uppercase tracking-[0.2em]"
+                    className={`absolute top-12 md:top-20 text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-500 ${theme.text}`}
                 >
                     {activeQuestion.category} · Q{currentStep + 1}/{QUESTIONS.length}
                 </motion.div>
@@ -357,18 +422,18 @@ export default function Survey() {
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: idx * 0.1 }}
                                         onClick={() => handleSelect(opt)}
-                                        className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 group relative overflow-hidden
+                                        className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-300 group relative overflow-hidden
                                             ${isSelected
-                                                ? 'border-indigo-500 bg-indigo-500/10 shadow-[0_0_20px_rgba(99,102,241,0.1)]'
+                                                ? `${theme.border} ${theme.bgSoft} ${theme.shadow}`
                                                 : 'border-slate-800 bg-slate-900/50 hover:border-slate-600 hover:bg-slate-800'
                                             }`}
                                     >
                                         <div className="flex items-center gap-3 relative z-10">
-                                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors
-                                                ${isSelected ? 'border-indigo-500 bg-indigo-500 text-white' : 'border-slate-600 text-transparent group-hover:border-slate-500'}`}>
+                                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors duration-300
+                                                ${isSelected ? `${theme.border} ${theme.bg} text-white` : 'border-slate-600 text-transparent group-hover:border-slate-500'}`}>
                                                 {isSelected && <div className="w-1.5 h-1.5 bg-white rounded-full shadow-sm" />}
                                             </div>
-                                            <span className={`text-base md:text-lg font-medium ${isSelected ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
+                                            <span className={`text-base md:text-lg font-medium transition-colors duration-300 ${isSelected ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
                                                 {opt}
                                             </span>
                                         </div>
@@ -389,7 +454,7 @@ export default function Survey() {
                                         value={answers[activeQuestion.id] || ''}
                                         onChange={handleEmailChange}
                                         onKeyDown={(e) => e.key === 'Enter' && handleNext()}
-                                        className="w-full bg-slate-900 border-b-2 border-slate-700 text-3xl md:text-4xl py-4 px-2 focus:outline-none focus:border-indigo-500 transition-colors text-white placeholder:text-slate-700"
+                                        className={`w-full bg-slate-900 border-b-2 border-slate-700 text-3xl md:text-4xl py-4 px-2 focus:outline-none ${theme.ring} ${theme.caret} transition-colors duration-500 text-white placeholder:text-slate-700`}
                                     />
                                     <p className="mt-4 text-slate-500 flex items-center gap-2">
                                         <span className="text-xs bg-slate-800 px-2 py-1 rounded border border-slate-700">ENTER</span>
@@ -408,7 +473,7 @@ export default function Survey() {
                     onClick={handlePrev}
                     disabled={currentStep === 0}
                     className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-colors
-                        ${currentStep === 0 ? 'text-slate-700 cursor-not-allowed' : 'text-indigo-400 hover:text-indigo-300 hover:bg-slate-900'}`}
+                        ${currentStep === 0 ? 'text-slate-700 cursor-not-allowed' : `${theme.buttonSecondary}`}`}
                 >
                     <ChevronLeft size={20} /> Back
                 </button>
@@ -427,7 +492,7 @@ export default function Survey() {
                     <button
                         onClick={submitForm}
                         disabled={isSubmitting}
-                        className="flex items-center gap-2 px-10 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-500 transition-all disabled:opacity-50 shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] hover:scale-105 active:scale-95"
+                        className={`flex items-center gap-2 px-10 py-4 text-white font-bold rounded-xl transition-all disabled:opacity-50 hover:scale-105 active:scale-95 ${theme.button}`}
                     >
                         {isSubmitting ? 'Sending...' : 'Submit'} <Send size={20} />
                     </button>
