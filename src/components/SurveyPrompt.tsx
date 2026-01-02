@@ -11,11 +11,15 @@ export default function SurveyPrompt() {
     const [hasDismissed, setHasDismissed] = useState(false);
 
     useEffect(() => {
-        // Check local storage
-        const dismissed = localStorage.getItem('survey_prompt_dismissed');
-        if (dismissed) {
-            setHasDismissed(true);
-            return;
+        // Check local storage safely
+        try {
+            const dismissed = localStorage.getItem('survey_prompt_dismissed');
+            if (dismissed) {
+                setHasDismissed(true);
+                return;
+            }
+        } catch (e) {
+            console.warn('LocalStorage access denied', e);
         }
 
         // Show after 4 seconds
@@ -29,7 +33,11 @@ export default function SurveyPrompt() {
     const handleDismiss = () => {
         setIsVisible(false);
         setHasDismissed(true);
-        localStorage.setItem('survey_prompt_dismissed', 'true');
+        try {
+            localStorage.setItem('survey_prompt_dismissed', 'true');
+        } catch (e) {
+            // Ignore (Private mode)
+        }
     };
 
     if (hasDismissed) return null;
@@ -41,7 +49,7 @@ export default function SurveyPrompt() {
                     initial={{ opacity: 0, y: 50, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                    className="fixed bottom-6 left-4 right-4 md:left-auto md:right-6 z-50 w-auto md:w-auto max-w-sm mx-auto"
+                    className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] left-4 right-4 md:left-auto md:right-6 z-[100] w-auto md:w-auto max-w-sm mx-auto touch-none"
                 >
                     <div className="bg-white rounded-2xl shadow-2xl p-5 border border-indigo-100 relative overflow-hidden">
                         {/* Decorative bling */}
