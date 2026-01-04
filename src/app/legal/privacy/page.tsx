@@ -45,7 +45,7 @@ export default function PrivacyPolicy() {
                     <section>
                         <h2 className="text-2xl font-bold mb-4">5. Contact Us</h2>
                         <p>
-                            For any questions regarding this privacy policy, please contact us via the support form on our dashboard or email basic@catcheater.bio.
+                            For any questions regarding this privacy policy, please contact us via the support form on our dashboard or email basic@catcheater.com.
                         </p>
                     </section>
                 </div>

@@ -449,7 +449,7 @@ export default function Survey() {
                                 onClick={() => {
                                     const shareData = {
                                         text: `I just assessed my facility's plasmid stability risk. Critical insights for optimizing fermentation yields. Quantify your risk here:`,
-                                        url: 'https://catcheater.bio/survey'
+                                        url: 'https://catcheater.com/survey'
                                     };
                                     const linkedinUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
                                     window.open(linkedinUrl, '_blank', 'noopener,noreferrer');

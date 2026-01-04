@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Bioproduction Stability Survey | Catcheater',
         description: 'Help us quantify the impact of genetic instability in industrial fermentation.',
-        url: 'https://catcheater.bio/survey',
+        url: 'https://catcheater.com/survey',
         siteName: 'Catcheater',
         images: [
             {

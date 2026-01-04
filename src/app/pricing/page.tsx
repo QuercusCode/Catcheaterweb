@@ -54,7 +54,7 @@ const tiers = [
             'Full Tech Transfer Package'
         ],
         cta: 'Contact Sales',
-        href: 'mailto:sales@catcheater.bio',
+        href: 'mailto:sales@catcheater.com',
         popular: false,
         color: 'text-purple-600'
     }
@@ -115,8 +115,8 @@ export default function Pricing() {
                             <Link
                                 href={tier.href}
                                 className={`w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ${tier.popular
-                                        ? 'bg-primary text-white hover:bg-blue-700 shadow-lg shadow-blue-500/20'
-                                        : 'bg-slate-100 text-foreground hover:bg-slate-200'
+                                    ? 'bg-primary text-white hover:bg-blue-700 shadow-lg shadow-blue-500/20'
+                                    : 'bg-slate-100 text-foreground hover:bg-slate-200'
                                     }`}
                             >
                                 {tier.cta} <ArrowRight size={16} />
